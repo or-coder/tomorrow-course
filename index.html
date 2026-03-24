@@ -21,10 +21,10 @@
   --layer3:     #4a5a4a;
   --layer4:     #c9a84c;
 }
-
+ 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-
+ 
 body {
   background: var(--bg);
   color: var(--text);
@@ -34,10 +34,10 @@ body {
   line-height: 1.8;
   min-height: 100vh;
 }
-
+ 
 /* ── LAYOUT ── */
 .app { display:flex; min-height:100vh; }
-
+ 
 /* ── SIDEBAR ── */
 .sidebar {
   width: 260px;
@@ -51,12 +51,12 @@ body {
   flex-direction: column;
   transition: transform .3s ease;
 }
-
+ 
 .sidebar-logo {
   padding: 32px 28px 24px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-
+ 
 .logo-wordmark {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -65,7 +65,7 @@ body {
   color: var(--white);
   text-transform: uppercase;
 }
-
+ 
 .logo-sub {
   font-size: 10px;
   color: rgba(255,255,255,0.3);
@@ -73,12 +73,12 @@ body {
   text-transform: uppercase;
   margin-top: 6px;
 }
-
+ 
 .sidebar-progress {
   padding: 20px 28px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-
+ 
 .prog-label {
   display: flex;
   justify-content: space-between;
@@ -88,22 +88,22 @@ body {
   color: rgba(255,255,255,0.3);
   margin-bottom: 10px;
 }
-
+ 
 .prog-track {
   height: 2px;
   background: rgba(255,255,255,0.08);
 }
-
+ 
 .prog-fill {
   height: 2px;
   background: var(--accent);
   transition: width .6s ease;
 }
-
+ 
 .sidebar-nav { flex:1; padding: 16px 0; }
-
+ 
 .nav-group { margin-bottom: 8px; }
-
+ 
 .nav-group-header {
   display: flex;
   align-items: center;
@@ -118,16 +118,16 @@ body {
   user-select: none;
 }
 .nav-group-header:hover { color: rgba(255,255,255,0.5); }
-
+ 
 .nav-group-line {
   width: 16px; height: 1px;
   background: currentColor;
   flex-shrink: 0;
 }
-
+ 
 .nav-items { display: none; }
 .nav-items.open { display: block; }
-
+ 
 .nav-item {
   display: flex;
   align-items: center;
@@ -144,13 +144,13 @@ body {
 .nav-item.active { color: var(--white); border-right-color: var(--accent); background: rgba(255,255,255,0.04); }
 .nav-item.completed { color: rgba(255,255,255,0.5); }
 .nav-item.completed .nav-check { color: var(--gold); }
-
+ 
 .nav-day-num { font-size: 10px; color: rgba(255,255,255,0.2); min-width: 22px; font-family: 'Playfair Display', serif; }
 .nav-check { margin-right: auto; font-size: 10px; color: transparent; }
-
+ 
 /* ── MAIN ── */
 .main { flex:1; margin-right: 260px; min-height: 100vh; }
-
+ 
 /* ── TOPBAR ── */
 .topbar {
   position: sticky; top:0; z-index: 50;
@@ -163,7 +163,7 @@ body {
   justify-content: space-between;
   padding: 0 56px;
 }
-
+ 
 .topbar-wordmark {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -172,31 +172,31 @@ body {
   text-transform: uppercase;
   color: var(--text);
 }
-
+ 
 .topbar-right {
   display: flex;
   align-items: center;
   gap: 24px;
 }
-
+ 
 .topbar-stat {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-soft);
 }
-
+ 
 .menu-toggle { display:none; background:none; border:none; cursor:pointer; font-size:18px; color:var(--text); }
-
+ 
 /* ── SCREENS ── */
 .screen { display:none; }
 .screen.active { display:block; animation: fadeUp .4s ease; }
-
+ 
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(12px); }
   to   { opacity:1; transform:translateY(0); }
 }
-
+ 
 /* ── HOME SCREEN ── */
 .home-cover {
   background: var(--bg-dark);
@@ -208,7 +208,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-
+ 
 .cover-texture {
   position: absolute;
   inset: 0;
@@ -217,7 +217,7 @@ body {
     repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,255,255,0.012) 80px, rgba(255,255,255,0.012) 81px);
   pointer-events: none;
 }
-
+ 
 .cover-eyebrow {
   font-size: 10px;
   letter-spacing: 4px;
@@ -226,7 +226,7 @@ body {
   margin-bottom: 28px;
   font-weight: 400;
 }
-
+ 
 .cover-title {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -236,7 +236,7 @@ body {
   letter-spacing: -1px;
   margin-bottom: 8px;
 }
-
+ 
 .cover-title-he {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -245,19 +245,19 @@ body {
   letter-spacing: 1px;
   margin-bottom: 48px;
 }
-
+ 
 .cover-divider {
   width: 48px; height: 1px;
   background: var(--accent);
   margin-bottom: 40px;
 }
-
+ 
 .cover-meta {
   display: flex;
   gap: 48px;
   margin-bottom: 56px;
 }
-
+ 
 .cover-stat-num {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -265,7 +265,7 @@ body {
   color: var(--white);
   line-height: 1;
 }
-
+ 
 .cover-stat-label {
   font-size: 10px;
   letter-spacing: 2px;
@@ -273,13 +273,13 @@ body {
   color: rgba(255,255,255,0.3);
   margin-top: 6px;
 }
-
+ 
 .cover-actions {
   display: flex;
   gap: 16px;
   align-items: center;
 }
-
+ 
 .btn-primary {
   background: var(--accent);
   color: var(--white);
@@ -295,7 +295,7 @@ body {
   transition: all .2s;
 }
 .btn-primary:hover { background: #7a3f27; }
-
+ 
 .btn-ghost {
   background: transparent;
   color: rgba(255,255,255,0.5);
@@ -311,7 +311,7 @@ body {
   transition: all .2s;
 }
 .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
-
+ 
 /* Layers strip on home */
 .cover-layers {
   display: flex;
@@ -320,7 +320,7 @@ body {
   border-top: 1px solid rgba(255,255,255,0.06);
   padding-top: 32px;
 }
-
+ 
 .cover-layer-item {
   flex: 1;
   padding: 20px 0 0;
@@ -328,10 +328,10 @@ body {
   cursor: pointer;
   transition: border-color .2s;
 }
-
+ 
 .cover-layer-item:hover { border-top-color: var(--accent); }
 .cover-layer-item:not(:last-child) { margin-left: 32px; }
-
+ 
 .cli-num {
   font-size: 10px;
   letter-spacing: 2px;
@@ -347,10 +347,10 @@ body {
   line-height: 1.3;
 }
 .cli-days { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 4px; }
-
+ 
 /* ── MAP SCREEN ── */
 .map-screen { padding: 64px 56px; }
-
+ 
 .section-eyebrow {
   font-size: 10px;
   letter-spacing: 3px;
@@ -358,7 +358,7 @@ body {
   color: var(--text-soft);
   margin-bottom: 16px;
 }
-
+ 
 .section-title-large {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -368,7 +368,7 @@ body {
   margin-bottom: 48px;
   letter-spacing: -0.5px;
 }
-
+ 
 .layers-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -376,7 +376,7 @@ body {
   border: 1px solid var(--border);
   margin-bottom: 56px;
 }
-
+ 
 .layer-panel {
   padding: 28px 24px;
   border-right: 1px solid var(--border);
@@ -387,7 +387,7 @@ body {
 }
 .layer-panel:last-child { border-right: none; }
 .layer-panel:hover { background: var(--surface); }
-
+ 
 .layer-panel::before {
   content: '';
   position: absolute;
@@ -398,7 +398,7 @@ body {
 .layer-panel[data-l="2"]::before { background: var(--layer2); }
 .layer-panel[data-l="3"]::before { background: var(--layer3); }
 .layer-panel[data-l="4"]::before { background: var(--gold); }
-
+ 
 .lp-eyebrow {
   font-size: 9px;
   letter-spacing: 2px;
@@ -406,7 +406,7 @@ body {
   color: var(--text-soft);
   margin-bottom: 12px;
 }
-
+ 
 .lp-title {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -415,13 +415,13 @@ body {
   line-height: 1.3;
   margin-bottom: 10px;
 }
-
+ 
 .lp-desc {
   font-size: 12px;
   color: var(--text-soft);
   line-height: 1.7;
 }
-
+ 
 .lp-count {
   font-size: 10px;
   letter-spacing: 1px;
@@ -430,7 +430,7 @@ body {
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
-
+ 
 /* Days grid */
 .days-section-title {
   font-size: 10px;
@@ -439,14 +439,14 @@ body {
   color: var(--text-soft);
   margin-bottom: 20px;
 }
-
+ 
 .days-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0;
   border: 1px solid var(--border);
 }
-
+ 
 .day-tile {
   padding: 16px 14px;
   border-right: 1px solid var(--border);
@@ -455,12 +455,12 @@ body {
   transition: background .2s;
   position: relative;
 }
-
+ 
 .day-tile:nth-child(6n) { border-right: none; }
 .day-tile:nth-last-child(-n+6) { border-bottom: none; }
 .day-tile:hover { background: var(--surface); }
 .day-tile.done { background: rgba(139,74,47,0.04); }
-
+ 
 .dt-num {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -469,32 +469,32 @@ body {
   line-height: 1;
   margin-bottom: 6px;
 }
-
+ 
 .dt-title {
   font-size: 10px;
   color: var(--text-soft);
   line-height: 1.4;
 }
-
+ 
 .dt-done-mark {
   position: absolute;
   top: 10px; left: 10px;
   font-size: 10px;
   color: var(--accent);
 }
-
+ 
 .dt-layer-bar {
   position: absolute;
   top: 0; right: 0; left: 0;
   height: 2px;
 }
-
+ 
 /* ── MODULE SCREEN ── */
 .module-wrap {
   max-width: 760px;
   padding: 56px 56px 80px;
 }
-
+ 
 .module-back {
   font-size: 10px;
   letter-spacing: 2px;
@@ -508,13 +508,13 @@ body {
   transition: color .2s;
 }
 .module-back:hover { color: var(--accent); }
-
+ 
 .module-header-block {
   margin-bottom: 48px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--border);
 }
-
+ 
 .module-day-tag {
   font-size: 10px;
   letter-spacing: 3px;
@@ -525,7 +525,7 @@ body {
   align-items: center;
   gap: 16px;
 }
-
+ 
 .module-day-tag::after {
   content: '';
   flex: 1;
@@ -533,7 +533,7 @@ body {
   background: var(--border);
   max-width: 120px;
 }
-
+ 
 .module-title {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -543,13 +543,13 @@ body {
   letter-spacing: -0.5px;
   margin-bottom: 20px;
 }
-
+ 
 .module-badges {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
-
+ 
 .badge {
   font-size: 10px;
   letter-spacing: 1.5px;
@@ -560,19 +560,19 @@ body {
   border-radius: 1px;
   background: var(--surface);
 }
-
+ 
 .badge.done-badge { border-color: var(--accent); color: var(--accent); }
-
+ 
 /* Content blocks */
 .cblock { margin-bottom: 44px; }
-
+ 
 .cblock-header {
   display: flex;
   align-items: baseline;
   gap: 16px;
   margin-bottom: 20px;
 }
-
+ 
 .cblock-eyebrow {
   font-size: 9px;
   letter-spacing: 3px;
@@ -580,13 +580,13 @@ body {
   color: var(--text-soft);
   white-space: nowrap;
 }
-
+ 
 .cblock-divider {
   flex: 1;
   height: 1px;
   background: var(--border);
 }
-
+ 
 .cblock-body {
   font-size: 15px;
   color: var(--text);
@@ -597,10 +597,10 @@ body {
 .cblock-body p:last-child { margin-bottom: 0; }
 .cblock-body strong { font-weight: 600; color: var(--text); }
 .cblock-body em { font-style: italic; color: var(--text-soft); }
-
+ 
 /* Objectives */
 .obj-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-
+ 
 .obj-item {
   display: flex;
   gap: 16px;
@@ -608,7 +608,7 @@ body {
   color: var(--text);
   line-height: 1.7;
 }
-
+ 
 .obj-num-box {
   min-width: 28px; height: 28px;
   border: 1px solid var(--border);
@@ -621,13 +621,13 @@ body {
   flex-shrink: 0;
   margin-top: 2px;
 }
-
+ 
 /* Scenario */
 .scenario-card {
   background: var(--white);
   border: 1px solid var(--border);
 }
-
+ 
 .scenario-dark-header {
   background: var(--bg-dark);
   padding: 20px 24px;
@@ -639,19 +639,19 @@ body {
   align-items: center;
   gap: 12px;
 }
-
+ 
 .scenario-dark-header::before {
   content: '';
   width: 20px; height: 1px;
   background: var(--accent);
 }
-
+ 
 .scenario-section {
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);
 }
 .scenario-section:last-child { border-bottom: none; }
-
+ 
 .scenario-label {
   font-size: 9px;
   letter-spacing: 2px;
@@ -659,16 +659,16 @@ body {
   color: var(--text-soft);
   margin-bottom: 10px;
 }
-
+ 
 .scenario-text {
   font-size: 14px;
   color: var(--text);
   line-height: 1.8;
   font-weight: 300;
 }
-
+ 
 .decision-opts { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
-
+ 
 .d-opt {
   display: flex;
   align-items: flex-start;
@@ -681,12 +681,12 @@ body {
   color: var(--text-soft);
   line-height: 1.6;
 }
-
+ 
 .d-opt:last-child { border-bottom: none; }
 .d-opt:hover { color: var(--text); }
 .d-opt.correct { color: var(--text); border-right: 3px solid var(--accent); padding-right: 14px; }
 .d-opt.wrong { color: var(--text-soft); opacity: .5; }
-
+ 
 .d-letter {
   min-width: 22px; height: 22px;
   border: 1px solid var(--border);
@@ -699,14 +699,14 @@ body {
   flex-shrink: 0;
   margin-top: 2px;
 }
-
+ 
 .debrief-block {
   padding: 20px 24px;
   background: rgba(139,74,47,0.05);
   border-top: 1px solid rgba(139,74,47,0.15);
   display: none;
 }
-
+ 
 .debrief-label {
   font-size: 9px;
   letter-spacing: 2px;
@@ -714,9 +714,9 @@ body {
   color: var(--accent);
   margin-bottom: 10px;
 }
-
+ 
 .debrief-text { font-size: 13px; color: var(--text); line-height: 1.8; font-weight: 300; }
-
+ 
 /* Takeaways */
 .takeaway-item {
   display: flex;
@@ -730,14 +730,14 @@ body {
   font-weight: 300;
 }
 .takeaway-item:last-child { border-bottom: none; }
-
+ 
 .takeaway-dash {
   width: 16px; height: 1px;
   background: var(--accent);
   margin-top: 12px;
   flex-shrink: 0;
 }
-
+ 
 /* Red flags */
 .redflag-item {
   display: flex;
@@ -753,16 +753,16 @@ body {
 }
 .redflag-item:last-child { margin-bottom: 0; }
 .rf-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; font-size: 12px; }
-
+ 
 /* Quiz */
 .quiz-wrap { border: 1px solid var(--border); }
-
+ 
 .quiz-q-block {
   padding: 24px;
   border-bottom: 1px solid var(--border);
 }
 .quiz-q-block:last-child { border-bottom: none; }
-
+ 
 .quiz-q-eyebrow {
   font-size: 9px;
   letter-spacing: 2px;
@@ -770,7 +770,7 @@ body {
   color: var(--text-soft);
   margin-bottom: 12px;
 }
-
+ 
 .quiz-q-text {
   font-size: 15px;
   color: var(--text);
@@ -778,9 +778,9 @@ body {
   line-height: 1.7;
   margin-bottom: 18px;
 }
-
+ 
 .quiz-opts { display: flex; flex-direction: column; gap: 0; }
-
+ 
 .q-opt {
   padding: 12px 0;
   border-bottom: 1px solid var(--border);
@@ -798,7 +798,7 @@ body {
 .q-opt.qcorrect { color: var(--text); border-right: 3px solid var(--accent); padding-right: 12px; }
 .q-opt.qwrong { opacity: .4; }
 .q-opt.reveal-correct { color: var(--accent); }
-
+ 
 .q-opt-letter {
   min-width: 20px;
   font-family: 'Playfair Display', serif;
@@ -807,7 +807,7 @@ body {
   flex-shrink: 0;
   margin-top: 1px;
 }
-
+ 
 .quiz-exp {
   margin-top: 12px;
   padding: 14px 16px;
@@ -819,7 +819,7 @@ body {
   border-right: 2px solid var(--gold);
 }
 .quiz-exp.show { display: block; }
-
+ 
 /* Module nav */
 .module-nav {
   display: flex;
@@ -829,7 +829,7 @@ body {
   padding-top: 40px;
   border-top: 1px solid var(--border);
 }
-
+ 
 .btn-nav {
   background: none;
   border: 1px solid var(--border);
@@ -845,7 +845,7 @@ body {
 }
 .btn-nav:hover { border-color: var(--text-soft); color: var(--text); }
 .btn-nav:disabled { opacity: .3; cursor: not-allowed; }
-
+ 
 .btn-complete {
   background: var(--accent);
   border: none;
@@ -861,16 +861,16 @@ body {
 }
 .btn-complete:hover { background: #7a3f27; }
 .btn-complete.is-done { background: var(--bg-dark); color: rgba(255,255,255,0.6); cursor: default; }
-
+ 
 /* ── EXAM SCREEN ── */
 .exam-wrap { max-width: 700px; padding: 56px; }
-
+ 
 .exam-cover-block {
   background: var(--bg-dark);
   padding: 48px;
   margin-bottom: 40px;
 }
-
+ 
 .exam-cover-eyebrow {
   font-size: 10px;
   letter-spacing: 3px;
@@ -878,7 +878,7 @@ body {
   color: var(--gold);
   margin-bottom: 20px;
 }
-
+ 
 .exam-cover-title {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -888,14 +888,14 @@ body {
   margin-bottom: 24px;
   letter-spacing: -0.5px;
 }
-
+ 
 .exam-cover-meta {
   display: flex;
   gap: 40px;
   padding-top: 24px;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
-
+ 
 .ecm-num {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -903,7 +903,7 @@ body {
   color: var(--white);
   line-height: 1;
 }
-
+ 
 .ecm-label {
   font-size: 10px;
   letter-spacing: 2px;
@@ -911,28 +911,28 @@ body {
   color: rgba(255,255,255,0.3);
   margin-top: 6px;
 }
-
+ 
 /* ── CERTIFICATE ── */
 .cert-wrap {
   max-width: 640px;
   margin: 0 auto;
   padding: 80px 56px;
 }
-
+ 
 .cert-box {
   background: var(--bg-dark);
   padding: 64px 56px;
   text-align: center;
   position: relative;
 }
-
+ 
 .cert-box::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--gold), var(--accent));
 }
-
+ 
 .cert-eyebrow {
   font-size: 10px;
   letter-spacing: 4px;
@@ -940,7 +940,7 @@ body {
   color: var(--gold);
   margin-bottom: 32px;
 }
-
+ 
 .cert-main-title {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -950,7 +950,7 @@ body {
   letter-spacing: -0.5px;
   margin-bottom: 20px;
 }
-
+ 
 .cert-program {
   font-size: 13px;
   letter-spacing: 2px;
@@ -958,16 +958,16 @@ body {
   color: rgba(255,255,255,0.4);
   margin-bottom: 40px;
 }
-
+ 
 .cert-divider { width: 48px; height: 1px; background: rgba(255,255,255,0.15); margin: 0 auto 40px; }
-
+ 
 .cert-body {
   font-size: 14px;
   color: rgba(255,255,255,0.5);
   line-height: 1.9;
   margin-bottom: 48px;
 }
-
+ 
 /* ── OVERLAY ── */
 .overlay {
   display: none;
@@ -976,12 +976,12 @@ body {
   z-index: 90;
 }
 .overlay.show { display: block; }
-
+ 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); }
-
+ 
 /* ── RESPONSIVE — TABLET (≤900px) ── */
 @media (max-width: 900px) {
   .sidebar { transform: translateX(100%); }
@@ -989,36 +989,36 @@ body {
   .main { margin-right: 0; }
   .menu-toggle { display: block; }
   .topbar { padding: 0 20px; }
-
+ 
   .home-cover  { padding: 48px 24px 40px; }
   .map-screen  { padding: 40px 24px; }
   .module-wrap { padding: 32px 24px 64px; }
   .exam-wrap   { padding: 32px 24px; }
   .cert-wrap   { padding: 40px 24px; }
-
+ 
   .layers-row { grid-template-columns: 1fr 1fr; }
   .days-grid  { grid-template-columns: repeat(5, 1fr); }
-
+ 
   .cover-meta { gap: 28px; }
   .cover-stat-num { font-size: 32px; }
   .cover-layers { gap: 0; flex-wrap: wrap; }
   .cover-layer-item { min-width: 48%; }
 }
-
+ 
 /* ── RESPONSIVE — MOBILE (≤600px) ── */
 @media (max-width: 600px) {
-
+ 
   /* Global typography scale-down */
   body { font-size: 15px; }
-
+ 
   /* Topbar */
   .topbar { height: 52px; padding: 0 16px; }
   .topbar-wordmark { font-size: 14px; letter-spacing: 2px; }
   .topbar-stat { font-size: 9px; }
-
+ 
   /* Sidebar — full-width drawer on mobile */
   .sidebar { width: 100%; min-width: unset; }
-
+ 
   /* Home cover */
   .home-cover {
     padding: 40px 20px 36px;
@@ -1046,7 +1046,7 @@ body {
   .cover-layer-item:not(:last-child) { margin-left: 0; }
   .cli-title { font-size: 12px; }
   .cli-days { font-size: 10px; }
-
+ 
   /* Map screen */
   .map-screen { padding: 28px 16px 48px; }
   .section-title-large { font-size: clamp(22px, 7vw, 32px); margin-bottom: 28px; }
@@ -1070,7 +1070,7 @@ body {
   .dt-num { font-size: 17px; }
   .dt-title { font-size: 8px; display: none; } /* hide text on tiny tiles */
   .dt-done-mark { font-size: 9px; top: 6px; left: 6px; }
-
+ 
   /* Module screen */
   .module-wrap { padding: 20px 16px 60px; }
   .module-back { font-size: 9px; margin-bottom: 24px; }
@@ -1079,16 +1079,16 @@ body {
   .module-day-tag::after { max-width: 60px; }
   .module-title { font-size: clamp(20px, 6vw, 28px); margin-bottom: 14px; }
   .badge { font-size: 9px; padding: 4px 10px; }
-
+ 
   /* Content blocks */
   .cblock { margin-bottom: 32px; }
   .cblock-eyebrow { font-size: 8px; letter-spacing: 2px; }
   .cblock-body { font-size: 14px; line-height: 1.8; }
-
+ 
   /* Objectives */
   .obj-item { font-size: 13px; gap: 12px; }
   .obj-num-box { min-width: 24px; height: 24px; font-size: 11px; }
-
+ 
   /* Scenario */
   .scenario-dark-header { padding: 14px 16px; font-size: 9px; }
   .scenario-section { padding: 14px 16px; }
@@ -1099,14 +1099,14 @@ body {
   .debrief-block { padding: 14px 16px; }
   .debrief-label { font-size: 8px; }
   .debrief-text { font-size: 12px; }
-
+ 
   /* Takeaways */
   .takeaway-item { font-size: 13px; padding: 12px 0; gap: 12px; }
   .takeaway-dash { width: 12px; margin-top: 10px; }
-
+ 
   /* Red flags */
   .redflag-item { font-size: 12px; padding: 12px 14px; }
-
+ 
   /* Quiz */
   .quiz-q-block { padding: 18px 16px; }
   .quiz-q-eyebrow { font-size: 8px; }
@@ -1114,7 +1114,7 @@ body {
   .q-opt { font-size: 12px; padding: 10px 0; gap: 10px; }
   .q-opt-letter { font-size: 10px; }
   .quiz-exp { font-size: 11px; padding: 10px 12px; }
-
+ 
   /* Module nav */
   .module-nav {
     flex-direction: column;
@@ -1125,7 +1125,7 @@ body {
   .module-nav > * { width: 100%; text-align: center; }
   .btn-nav { padding: 12px 20px; font-size: 10px; }
   .btn-complete { padding: 14px 20px; font-size: 10px; }
-
+ 
   /* Exam */
   .exam-wrap { padding: 20px 16px 48px; }
   .exam-cover-block { padding: 28px 20px; margin-bottom: 24px; }
@@ -1134,18 +1134,18 @@ body {
   .exam-cover-meta { gap: 24px; padding-top: 18px; }
   .ecm-num { font-size: 26px; }
   .ecm-label { font-size: 9px; }
-
+ 
   /* Certificate */
   .cert-wrap { padding: 32px 16px; }
   .cert-box { padding: 40px 24px; }
   .cert-main-title { font-size: 32px; }
   .cert-program { font-size: 11px; }
   .cert-body { font-size: 13px; margin-bottom: 32px; }
-
+ 
   /* Hide scrollbar on mobile */
   ::-webkit-scrollbar { width: 0; }
 }
-
+ 
 /* ── RESPONSIVE — SMALL MOBILE (≤380px) ── */
 @media (max-width: 380px) {
   .cover-title { font-size: 36px; }
@@ -1155,10 +1155,10 @@ body {
   .module-title { font-size: 19px; }
   .cover-layers { grid-template-columns: 1fr; }
 }
-
+ 
 /* ── EVIDENCE TAGS ── */
 .ev { display:inline-flex; align-items:center; gap:5px; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border:1px solid var(--border); color:var(--text-soft); border-radius:1px; }
-
+ 
 /* ── MOBILE BOTTOM NAV ── */
 .mobile-bottom-nav {
   display: none;
@@ -1171,7 +1171,7 @@ body {
   flex-direction: row;
   align-items: stretch;
 }
-
+ 
 .mbn-item {
   flex: 1;
   display: flex;
@@ -1188,31 +1188,31 @@ body {
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
-
+ 
 .mbn-item:active { background: rgba(255,255,255,0.04); }
 .mbn-item.active { color: var(--accent); }
-
+ 
 .mbn-icon {
   font-size: 18px;
   line-height: 1;
 }
-
+ 
 .mbn-label {
   font-size: 9px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 400;
 }
-
+ 
 /* Show mobile nav only on small screens */
 @media (max-width: 600px) {
   .mobile-bottom-nav { display: flex; }
   .main { padding-bottom: 60px; }
   .topbar-stat { display: none; }
 }
-
+ 
 /* ── EDIT MODE ── */
-
+ 
 /* Edit toggle button in topbar */
 .edit-toggle-btn {
   display: flex;
@@ -1232,7 +1232,7 @@ body {
 }
 .edit-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
 .edit-toggle-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
-
+ 
 /* Edit pencil icon on hoverable fields */
 .editable-field {
   position: relative;
@@ -1258,7 +1258,7 @@ body.edit-mode .editable-field:hover::after {
   opacity: 0.7;
   pointer-events: none;
 }
-
+ 
 /* Edit modal overlay */
 .edit-modal-overlay {
   display: none;
@@ -1271,7 +1271,7 @@ body.edit-mode .editable-field:hover::after {
   padding: 20px;
 }
 .edit-modal-overlay.open { display: flex; }
-
+ 
 .edit-modal {
   background: var(--white);
   width: 100%;
@@ -1282,7 +1282,7 @@ body.edit-mode .editable-field:hover::after {
   border: 1px solid var(--border);
   animation: fadeUp .2s ease;
 }
-
+ 
 .edit-modal-header {
   background: var(--bg-dark);
   padding: 18px 24px;
@@ -1291,7 +1291,7 @@ body.edit-mode .editable-field:hover::after {
   justify-content: space-between;
   flex-shrink: 0;
 }
-
+ 
 .edit-modal-title {
   font-size: 10px;
   letter-spacing: 3px;
@@ -1306,7 +1306,7 @@ body.edit-mode .editable-field:hover::after {
   width: 16px; height: 1px;
   background: var(--accent);
 }
-
+ 
 .edit-modal-close {
   background: none;
   border: none;
@@ -1318,7 +1318,7 @@ body.edit-mode .editable-field:hover::after {
   padding: 0;
 }
 .edit-modal-close:hover { color: var(--white); }
-
+ 
 .edit-modal-field-label {
   font-size: 9px;
   letter-spacing: 2px;
@@ -1328,14 +1328,14 @@ body.edit-mode .editable-field:hover::after {
   flex-shrink: 0;
   background: var(--white);
 }
-
+ 
 .edit-modal-body {
   flex: 1;
   overflow-y: auto;
   padding: 0 24px 16px;
   background: var(--white);
 }
-
+ 
 /* Textarea for plain text fields */
 .edit-textarea {
   width: 100%;
@@ -1355,7 +1355,7 @@ body.edit-mode .editable-field:hover::after {
   -webkit-appearance: none;
 }
 .edit-textarea:focus { border-color: var(--accent); }
-
+ 
 /* Rich text toolbar */
 .edit-toolbar {
   display: flex;
@@ -1366,7 +1366,7 @@ body.edit-mode .editable-field:hover::after {
   flex-shrink: 0;
   background: var(--white);
 }
-
+ 
 .edit-tool {
   background: #f0ebe3;
   border: 1px solid var(--border);
@@ -1381,7 +1381,7 @@ body.edit-mode .editable-field:hover::after {
 .edit-tool:hover { border-color: var(--accent); color: var(--accent); }
 .edit-tool.bold-btn { font-weight: 700; }
 .edit-tool.italic-btn { font-style: italic; }
-
+ 
 /* Editable rich area */
 .edit-richarea {
   width: 100%;
@@ -1401,7 +1401,7 @@ body.edit-mode .editable-field:hover::after {
 .edit-richarea:focus { border-color: var(--accent); }
 .edit-richarea strong { font-weight: 600; color: #1a1512; }
 .edit-richarea em { font-style: italic; color: #6b6055; }
-
+ 
 /* List editor */
 .edit-list-item {
   display: flex;
@@ -1409,7 +1409,7 @@ body.edit-mode .editable-field:hover::after {
   gap: 8px;
   margin-bottom: 8px;
 }
-
+ 
 .edit-list-input {
   flex: 1;
   background: #f0ebe3;
@@ -1428,7 +1428,7 @@ body.edit-mode .editable-field:hover::after {
   -webkit-appearance: none;
 }
 .edit-list-input:focus { border-color: var(--accent); }
-
+ 
 .edit-list-remove {
   background: #faf7f3;
   border: 1px solid var(--border);
@@ -1445,7 +1445,7 @@ body.edit-mode .editable-field:hover::after {
   transition: all .15s;
 }
 .edit-list-remove:hover { border-color: #c0392b; color: #c0392b; background: #fdf0ef; }
-
+ 
 .edit-add-item {
   background: #faf7f3;
   border: 1px dashed var(--border);
@@ -1462,7 +1462,7 @@ body.edit-mode .editable-field:hover::after {
   transition: all .15s;
 }
 .edit-add-item:hover { border-color: var(--accent); color: var(--accent); background: #f5ede8; }
-
+ 
 /* Modal footer */
 .edit-modal-footer {
   padding: 16px 24px;
@@ -1473,7 +1473,7 @@ body.edit-mode .editable-field:hover::after {
   flex-shrink: 0;
   background: var(--surface);
 }
-
+ 
 .edit-save-btn {
   background: var(--accent);
   border: none;
@@ -1488,7 +1488,7 @@ body.edit-mode .editable-field:hover::after {
   transition: all .2s;
 }
 .edit-save-btn:hover { background: #7a3f27; }
-
+ 
 .edit-cancel-btn {
   background: #faf7f3;
   border: 1px solid var(--border);
@@ -1502,13 +1502,13 @@ body.edit-mode .editable-field:hover::after {
   transition: all .2s;
 }
 .edit-cancel-btn:hover { border-color: #6b6055; color: #1a1512; }
-
+ 
 .edit-hint {
   font-size: 10px;
   color: #6b6055;
   letter-spacing: 0.5px;
 }
-
+ 
 /* Save feedback toast */
 .edit-toast {
   position: fixed;
@@ -1530,7 +1530,7 @@ body.edit-mode .editable-field:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-
+ 
 @media (max-width: 600px) {
   .edit-modal { max-height: 95vh; }
   .edit-modal-footer { flex-direction: column; gap: 10px; }
@@ -1541,7 +1541,7 @@ body.edit-mode .editable-field:hover::after {
 </head>
 <body>
 <div class="app">
-
+ 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
@@ -1557,9 +1557,9 @@ body.edit-mode .editable-field:hover::after {
     </div>
     <nav class="sidebar-nav" id="sidebar-nav"></nav>
   </aside>
-
+ 
   <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
+ 
   <!-- MOBILE BOTTOM NAV -->
   <nav class="mobile-bottom-nav" id="mobile-nav">
     <button class="mbn-item active" onclick="showScreen('screen-home');setMobileActive(this)">
@@ -1579,10 +1579,10 @@ body.edit-mode .editable-field:hover::after {
       <span class="mbn-label">תוכן</span>
     </button>
   </nav>
-
+ 
   <!-- MAIN -->
   <main class="main" id="main">
-
+ 
     <!-- TOPBAR -->
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:16px">
@@ -1597,12 +1597,12 @@ body.edit-mode .editable-field:hover::after {
         </button>
       </div>
     </div>
-
+ 
     <!-- HOME -->
     <div class="screen active" id="screen-home">
       <div class="home-cover">
         <div class="cover-texture"></div>
-        <div class="cover-eyebrow">Clinical Longevity Program · 2025</div>
+        <div class="cover-eyebrow">Clinical Longevity Program</div>
         <h1 class="cover-title">Tomorrow</h1>
         <div class="cover-title-he">תוכנית הכשרה קלינית מתקדמת</div>
         <div class="cover-divider"></div>
@@ -1652,7 +1652,7 @@ body.edit-mode .editable-field:hover::after {
         </div>
       </div>
     </div>
-
+ 
     <!-- MAP -->
     <div class="screen" id="screen-map">
       <div class="map-screen">
@@ -1688,12 +1688,12 @@ body.edit-mode .editable-field:hover::after {
         <div class="days-grid" id="days-grid"></div>
       </div>
     </div>
-
+ 
     <!-- MODULE -->
     <div class="screen" id="screen-module">
       <div class="module-wrap" id="module-content"></div>
     </div>
-
+ 
     <!-- MIDTERM -->
     <div class="screen" id="screen-exam-mid">
       <div class="exam-wrap">
@@ -1712,7 +1712,7 @@ body.edit-mode .editable-field:hover::after {
         </div>
       </div>
     </div>
-
+ 
     <!-- FINAL EXAM -->
     <div class="screen" id="screen-exam-final">
       <div class="exam-wrap">
@@ -1731,7 +1731,7 @@ body.edit-mode .editable-field:hover::after {
         </div>
       </div>
     </div>
-
+ 
     <!-- CERTIFICATE -->
     <div class="screen" id="screen-cert">
       <div class="cert-wrap">
@@ -1749,20 +1749,20 @@ body.edit-mode .editable-field:hover::after {
         </div>
       </div>
     </div>
-
+ 
   </main>
 </div>
-
+ 
 <script>
 // ── DATA ──────────────────────────────────────────────────
-
+ 
 const LAYERS = [
   { id:1, color:'#8b4a2f', days:[1,2,3,4,5], name:'Service & System Mindset' },
   { id:2, color:'#6b6055', days:[6,7,8,9,10,11,12,13,14,15], name:'Core Longevity Science' },
   { id:3, color:'#4a5a4a', days:[16,17,18,19,20,21,22,23,24,25,26,27,28], name:'Domain Deep' },
   { id:4, color:'#c9a84c', days:[29,30], name:'Capstone' },
 ];
-
+ 
 const MODULES = {
   1: {
     title: 'תודעת שירות ברפואה פרטית מתקדמת',
@@ -2072,10 +2072,10 @@ ApoB 105, hsCRP 2.1, CAC 45, BMI 23, פעילה גופנית. "הכולסטרו�
     }]
   },
 };
-
+ 
 // Skeleton for remaining days
 const TITLES = {3:'תקשורת בין-מקצועית ותיאום טיפולי',4:'תרחישי קונפליקט: מטופל, צוות וציפיות',5:'מטופל מורכב רגשית — אינטגרציה שכבה 1',9:'Biomarkers & Risk Stratification',10:'Functional Testing & Body Composition',12:'Brain & Cognitive Longevity',13:'Immune Aging — Inflammaging & Immunosenescence',14:'Sleep & Recovery — פיזיולוגיה ו-Longevity Impact',15:'Stress Physiology + מבחן ביניים שכבה 2',16:'Risk Stratification מתקדם',17:'בניית תוכנית Longevity רב-שנתית',18:'Periodization בהקשר Aging',19:'Strength Training & Sarcopenia Prevention',20:'תפקוד כמדד ביולוגי — Mobility & Longevity',21:'כאב כרוני, OA ו-Physiotherapy',22:'Protein, Sarcopenia ו-Longevity Nutrition',23:'Insulin Resistance, Inflammation ו-Metabolic Nutrition',24:'Periodized Nutrition & Supplements',25:'ניהול מסע לקוח ו-Follow-up System',26:'תקשורת עם רופאים, Red Flags וניהול מידע',27:'אינטגרציה של מומחה חיצוני',28:'ישיבת צוות מלאה + מבחן ביניים שכבה 3',30:'מבחן סיום, הערכת יחידות ותעודה'};
-
+ 
 for (let d = 1; d <= 30; d++) {
   if (!MODULES[d]) {
     const layer = LAYERS.find(l => l.days.includes(d)).id;
@@ -2091,7 +2091,7 @@ for (let d = 1; d <= 30; d++) {
     };
   }
 }
-
+ 
 const MID_EXAM = [
   {q:'מהו הפער הממוצע בין Healthspan ל-Lifespan?',opts:['3-5 שנים','9-12 שנים','15-20 שנים','אין פער מדיד'],correct:1,exp:'הפער הנוכחי כ-9–12 שנות נטל תחלואה לפני המוות.'},
   {q:'מה SASP?',opts:['חלבון גרעיני','הפרשת ציטוקינים מתאים סנסנטים','תעלת סידן','מנגנון DNA repair'],correct:1,exp:'SASP — Senescence-Associated Secretory Phenotype — תערובת ציטוקינים הרסנית.'},
@@ -2099,7 +2099,7 @@ const MID_EXAM = [
   {q:'TG/HDL ratio מעל כמה מעיד על חשד ל-IR?',opts:['2.0','2.5','3.5','5.0'],correct:2,exp:'TG/HDL >3.5 הוא surrogate marker מקובל לעמידות לאינסולין.'},
   {q:'Lp(a) מושפע בעיקר מ:',opts:['תזונה','80-90% גנטיקה','פעילות גופנית','שינה'],correct:1,exp:'Lp(a) — גורם סיכון גנטי דומיננטי עם מעט תגובה להתערבויות אורח חיים.'},
 ];
-
+ 
 const FINAL_EXAM = [
   ...MID_EXAM,
   {q:'מי אחראי להערכת Fall Risk אצל מטופל עם Parkinson\'s?',opts:['רופא בלבד','פיזיותרפיסט','מאמן','קורדינטורית'],correct:1,exp:'Fall Risk Assessment — כשירות ליבה של הפיזיותרפיסט.'},
@@ -2108,21 +2108,21 @@ const FINAL_EXAM = [
   {q:'CAC Score 45 בגבר 52 מצביע על:',opts:['ממצא שולי','Plaque burden מוקדם המצדיק אסטרטגיה אגרסיבית','סיכון גבוה המצריך קתטריזציה','ממצא תקין'],correct:1,exp:'CAC >0 בגבר <55 — ממצא משמעותי. דורש ApoB, Lp(a), שקילת statin.'},
   {q:'Hallmark — תאים שאינם מתחלקים ואינם מתים אך מזיקים לסביבה:',opts:['Telomere shortening','Cellular senescence','Genomic instability','Stem cell exhaustion'],correct:1,exp:'הגדרה קלאסית של Cellular Senescence — permanent growth arrest + SASP.'},
 ];
-
+ 
 // ── STATE ──────────────────────────────────────────────────
 let completed = new Set(JSON.parse(localStorage.getItem('tmr_done')||'[]'));
 let currentDay = 1;
 let examAns = {};
-
+ 
 function save() { try { localStorage.setItem('tmr_done', JSON.stringify([...completed])); } catch(e){} }
-
+ 
 // ── INIT ──────────────────────────────────────────────────
 function init() {
   buildSidebar();
   buildDaysGrid();
   updateProgress();
 }
-
+ 
 function buildSidebar() {
   const nav = document.getElementById('sidebar-nav');
   nav.innerHTML = '';
@@ -2147,11 +2147,11 @@ function buildSidebar() {
   });
   nav.querySelector('.nav-items').classList.add('open');
 }
-
+ 
 function toggleGroup(el) {
   el.nextElementSibling.classList.toggle('open');
 }
-
+ 
 function buildDaysGrid() {
   const g = document.getElementById('days-grid');
   g.innerHTML = '';
@@ -2169,23 +2169,23 @@ function buildDaysGrid() {
     g.appendChild(tile);
   }
 }
-
+ 
 function updateProgress() {
   const pct = Math.round((completed.size/30)*100);
   document.getElementById('prog-pct').textContent = pct+'%';
   document.getElementById('prog-fill').style.width = pct+'%';
   document.getElementById('comp-count').textContent = completed.size;
 }
-
+ 
 // ── NAV ───────────────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-
+ 
 function startCourse() { goToDay(1); }
-
+ 
 function goToDay(d) {
   currentDay = d;
   renderModule(d);
@@ -2199,13 +2199,13 @@ function goToDay(d) {
   const mbnMod = document.getElementById('mbn-module-btn');
   if (mbnMod) mbnMod.classList.add('active');
 }
-
+ 
 // ── RENDER ────────────────────────────────────────────────
 function renderModule(d) {
   const m = MODULES[d];
   const layer = LAYERS.find(l=>l.days.includes(d));
   const done = completed.has(d);
-
+ 
   let html = `
     <div class="module-back" onclick="showScreen('screen-map')">← מפת הקורס</div>
     <div class="module-header-block">
@@ -2219,7 +2219,7 @@ function renderModule(d) {
         ${done?'<span class="badge done-badge">הושלם ✓</span>':''}
       </div>
     </div>
-
+ 
     <div class="cblock">
       <div class="cblock-header">
         <span class="cblock-eyebrow">מטרות למידה</span>
@@ -2233,7 +2233,7 @@ function renderModule(d) {
           </li>`).join('')}
       </ul>
     </div>
-
+ 
     <div class="cblock">
       <div class="cblock-header">
         <span class="cblock-eyebrow">תוכן ליבה</span>
@@ -2241,7 +2241,7 @@ function renderModule(d) {
       </div>
       <div class="cblock-body editable-field" onclick="openEdit(${d},'content','rich')">${m.content}</div>
     </div>`;
-
+ 
   if (m.scenario) {
     html += `
       <div class="cblock">
@@ -2272,7 +2272,7 @@ function renderModule(d) {
         </div>
       </div>`; 
   }
-
+ 
   html += `
     <div class="cblock">
       <div class="cblock-header">
@@ -2287,7 +2287,7 @@ function renderModule(d) {
           </div>`).join('')}
       </div>
     </div>
-
+ 
     <div class="cblock">
       <div class="cblock-header">
         <span class="cblock-eyebrow">דגלים אדומים</span>
@@ -2301,7 +2301,7 @@ function renderModule(d) {
           </div>`).join('')}
       </div>
     </div>`;
-
+ 
   if (m.quiz?.length) {
     html += `
       <div class="cblock">
@@ -2326,42 +2326,42 @@ function renderModule(d) {
         </div>
       </div>`; 
   }
-
+ 
   const prev = d>1?d-1:null;
   const next = d<30?d+1:null;
-
+ 
   html += `
     <div class="module-nav">
-      <button class="btn-nav" onclick="goToDay(${prev})" ${!prev?'disabled':''}>← הקודם</button>
+      <button class="btn-nav" onclick="goToDay(${prev})" ${!prev?'disabled':''}>→ הקודם</button>
       <button class="btn-complete ${done?'is-done':''}" id="cb-${d}" onclick="markDone(${d})">
         ${done?'✓ הושלם':'סמן כהושלם'}
       </button>
-      <button class="btn-nav" onclick="goToDay(${next})" ${!next?'disabled':''}>הבא →</button>
+      <button class="btn-nav" onclick="goToDay(${next})" ${!next?'disabled':''}>הבא ←</button>
     </div>`;
-
+ 
   if (d===15) html += `
     <div style="margin-top:32px;padding:32px;background:var(--bg-dark);text-align:right">
       <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">הערכה · שכבה 02</div>
       <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:20px">מבחן ביניים</div>
       <button class="btn-primary" onclick="showScreen('screen-exam-mid');renderExam('mid')">עבור למבחן</button>
     </div>`;
-
+ 
   if (d===30) html += `
     <div style="margin-top:32px;padding:32px;background:var(--bg-dark);text-align:right">
       <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">הערכה סופית</div>
       <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:20px">מבחן סיום</div>
       <button class="btn-primary" onclick="showScreen('screen-exam-final');renderExam('final')">עבור למבחן סיום</button>
     </div>`;
-
+ 
   document.getElementById('module-content').innerHTML = html;
 }
-
+ 
 function pickDecision(el, isCorrect, dbId) {
   el.closest('.decision-opts').querySelectorAll('.d-opt').forEach(o=>{o.style.pointerEvents='none';o.classList.remove('correct','wrong');});
   el.classList.add(isCorrect?'correct':'wrong');
   document.getElementById(dbId).style.display='block';
 }
-
+ 
 function pickQuiz(el, isCorrect, expId, correctIdx) {
   const opts = el.closest('.quiz-opts');
   opts.querySelectorAll('.q-opt').forEach((o,i)=>{
@@ -2372,7 +2372,7 @@ function pickQuiz(el, isCorrect, expId, correctIdx) {
   else el.classList.add('qcorrect');
   document.getElementById(expId).classList.add('show');
 }
-
+ 
 function markDone(d) {
   completed.add(d);
   save();
@@ -2383,7 +2383,7 @@ function markDone(d) {
   const ni = document.getElementById(`nav-${d}`);
   if (ni) { ni.classList.add('completed'); ni.querySelector('.nav-check').textContent='—'; }
 }
-
+ 
 // ── EXAM ──────────────────────────────────────────────────
 function renderExam(type) {
   const qs = type==='mid'?MID_EXAM:FINAL_EXAM;
@@ -2404,7 +2404,7 @@ function renderExam(type) {
       </div>
     </div>`).join('');
 }
-
+ 
 function pickExam(el, type, qi, oi) {
   const parent = el.parentElement;
   parent.querySelectorAll('div').forEach(d=>{d.style.fontWeight='300';d.dataset.sel='';});
@@ -2413,7 +2413,7 @@ function pickExam(el, type, qi, oi) {
   el.dataset.sel='1';
   examAns[type][qi]=oi;
 }
-
+ 
 function submitExam(type) {
   const qs = type==='mid'?MID_EXAM:FINAL_EXAM;
   let correct=0;
@@ -2424,7 +2424,7 @@ function submitExam(type) {
   alert(msg);
   if (passed && type==='final') setTimeout(()=>showScreen('screen-cert'),400);
 }
-
+ 
 // ── SIDEBAR ───────────────────────────────────────────────
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
@@ -2434,21 +2434,21 @@ function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('show');
 }
-
+ 
 function goToCurrentDay() {
   goToDay(currentDay || 1);
 }
-
+ 
 function setMobileActive(el) {
   document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
 }
-
+ 
 // ── EDIT MODE ──────────────────────────────────────────────
-
+ 
 let editMode = false;
 let editCtx = null; // { dayId, field, type, listKey? }
-
+ 
 function toggleEditMode() {
   editMode = !editMode;
   document.body.classList.toggle('edit-mode', editMode);
@@ -2461,7 +2461,7 @@ function toggleEditMode() {
     renderModule(currentDay);
   }
 }
-
+ 
 // Open editor for a specific field
 function openEdit(dayId, field, type, listKey) {
   if (!editMode) return;
@@ -2473,7 +2473,7 @@ function openEdit(dayId, field, type, listKey) {
   const bodyEl = document.getElementById('edit-modal-body');
   const toolbarSlot = document.getElementById('edit-modal-toolbar-slot');
   const hintEl = document.getElementById('edit-hint');
-
+ 
   const FIELD_LABELS = {
     title: 'כותרת המודול',
     content: 'תוכן ליבה',
@@ -2486,12 +2486,12 @@ function openEdit(dayId, field, type, listKey) {
     quiz_q: 'שאלת חידון',
     quiz_exp: 'הסבר תשובה',
   };
-
+ 
   titleEl.textContent = FIELD_LABELS[field] || field;
   labelEl.textContent = FIELD_LABELS[field] || field;
   toolbarSlot.innerHTML = '';
   hintEl.textContent = '';
-
+ 
   if (type === 'text') {
     // Single-line or short text
     let val = '';
@@ -2501,15 +2501,15 @@ function openEdit(dayId, field, type, listKey) {
     else if (field === 'scenario_debrief') val = m.scenario?.debrief || '';
     else if (field === 'quiz_q') val = m.quiz[listKey]?.q || '';
     else if (field === 'quiz_exp') val = m.quiz[listKey]?.exp || '';
-
+ 
     bodyEl.innerHTML = `<textarea class="edit-textarea" id="edit-input" dir="rtl">${escHtml(val)}</textarea>`;
     hintEl.textContent = 'טקסט חופשי';
-
+ 
   } else if (type === 'rich') {
     // Rich HTML content
     let val = '';
     if (field === 'content') val = m.content;
-
+ 
     toolbarSlot.innerHTML = `
       <div class="edit-toolbar">
         <button class="edit-tool bold-btn" onclick="richCmd('bold')" title="מודגש"><b>B</b></button>
@@ -2521,14 +2521,14 @@ function openEdit(dayId, field, type, listKey) {
       </div>`;
     bodyEl.innerHTML = `<div class="edit-richarea" id="edit-input" contenteditable="true" dir="rtl">${val}</div>`;
     hintEl.textContent = 'HTML מלא נתמך';
-
+ 
   } else if (type === 'list') {
     // Editable list (objectives, takeaways, redFlags)
     let items = [];
     if (field === 'objectives') items = [...m.objectives];
     else if (field === 'takeaways') items = [...m.takeaways];
     else if (field === 'redFlags') items = [...m.redFlags];
-
+ 
     bodyEl.innerHTML = `
       <div id="edit-list-container">
         ${items.map((item, i) => buildListItemHTML(item, i)).join('')}
@@ -2536,7 +2536,7 @@ function openEdit(dayId, field, type, listKey) {
       <button class="edit-add-item" onclick="addListItem()">+ הוסף פריט</button>`;
     hintEl.textContent = `${items.length} פריטים`;
   }
-
+ 
   modal.classList.add('open');
   // Focus first input
   setTimeout(() => {
@@ -2544,14 +2544,14 @@ function openEdit(dayId, field, type, listKey) {
     if (inp) inp.focus();
   }, 100);
 }
-
+ 
 function buildListItemHTML(text, idx) {
   return `<div class="edit-list-item" data-idx="${idx}">
     <textarea class="edit-list-input" rows="2" dir="rtl">${escHtml(text)}</textarea>
     <button class="edit-list-remove" onclick="removeListItem(this)" title="מחק">×</button>
   </div>`;
 }
-
+ 
 function addListItem() {
   const container = document.getElementById('edit-list-container');
   const idx = container.children.length;
@@ -2560,16 +2560,16 @@ function addListItem() {
   container.appendChild(div.firstElementChild);
   container.lastElementChild.querySelector('textarea').focus();
 }
-
+ 
 function removeListItem(btn) {
   btn.closest('.edit-list-item').remove();
 }
-
+ 
 function richCmd(cmd) {
   document.getElementById('edit-input').focus();
   document.execCommand(cmd, false, null);
 }
-
+ 
 function wrapTag(tag) {
   const sel = window.getSelection();
   if (!sel.rangeCount) return;
@@ -2577,18 +2577,18 @@ function wrapTag(tag) {
   const el = document.createElement(tag);
   try { range.surroundContents(el); } catch(e) {}
 }
-
+ 
 function insertParagraph() {
   const area = document.getElementById('edit-input');
   area.focus();
   document.execCommand('insertParagraph', false, null);
 }
-
+ 
 function saveEdit() {
   if (!editCtx) return;
   const { dayId, field, type, listKey } = editCtx;
   const m = MODULES[dayId];
-
+ 
   if (type === 'text') {
     const val = document.getElementById('edit-input').value;
     if (field === 'title') m.title = val;
@@ -2597,11 +2597,11 @@ function saveEdit() {
     else if (field === 'scenario_debrief') { if (!m.scenario) m.scenario = {}; m.scenario.debrief = val; }
     else if (field === 'quiz_q') { if (m.quiz[listKey]) m.quiz[listKey].q = val; }
     else if (field === 'quiz_exp') { if (m.quiz[listKey]) m.quiz[listKey].exp = val; }
-
+ 
   } else if (type === 'rich') {
     const val = document.getElementById('edit-input').innerHTML;
     if (field === 'content') m.content = val;
-
+ 
   } else if (type === 'list') {
     const inputs = document.querySelectorAll('#edit-list-container .edit-list-input');
     const vals = [...inputs].map(i => i.value.trim()).filter(v => v);
@@ -2609,7 +2609,7 @@ function saveEdit() {
     else if (field === 'takeaways') m.takeaways = vals;
     else if (field === 'redFlags') m.redFlags = vals;
   }
-
+ 
   // Persist to localStorage
   try {
     const stored = JSON.parse(localStorage.getItem('tmr_edits') || '{}');
@@ -2624,7 +2624,7 @@ function saveEdit() {
     }
     localStorage.setItem('tmr_edits', JSON.stringify(stored));
   } catch(e) {}
-
+ 
   closeEditModal();
   showToast('✓ השינויים נשמרו');
   // Re-render to show updated content
@@ -2632,7 +2632,7 @@ function saveEdit() {
   // Also rebuild sidebar if title changed
   if (field === 'title') buildSidebar();
 }
-
+ 
 function loadSavedEdits() {
   try {
     const stored = JSON.parse(localStorage.getItem('tmr_edits') || '{}');
@@ -2653,23 +2653,23 @@ function loadSavedEdits() {
     });
   } catch(e) {}
 }
-
+ 
 function closeEditModal() {
   document.getElementById('edit-modal-overlay').classList.remove('open');
   editCtx = null;
 }
-
+ 
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('edit-modal-overlay')) closeEditModal();
 }
-
+ 
 function showToast(msg) {
   const toast = document.getElementById('edit-toast');
   toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2200);
 }
-
+ 
 function escHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -2677,11 +2677,11 @@ function escHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
-
+ 
 init();
 loadSavedEdits();
 </script>
-
+ 
 <!-- EDIT MODAL -->
 <div class="edit-modal-overlay" id="edit-modal-overlay" onclick="handleOverlayClick(event)">
   <div class="edit-modal" id="edit-modal">
@@ -2701,9 +2701,10 @@ loadSavedEdits();
     </div>
   </div>
 </div>
-
+ 
 <!-- TOAST -->
 <div class="edit-toast" id="edit-toast">✓ השינויים נשמרו</div>
-
+ 
 </body>
 </html>
+ 
