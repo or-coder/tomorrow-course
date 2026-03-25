@@ -977,6 +977,65 @@ body {
 }
 .overlay.show { display: block; }
 
+/* ── DATA TABLE ── */
+.data-table-wrap {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.data-table-title {
+  background: var(--bg-dark);
+  padding: 8px 16px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.data-table-title::before { content:''; width:12px; height:1px; background:var(--accent); }
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  font-family: 'Heebo', sans-serif;
+  direction: rtl;
+}
+
+table.data-table th {
+  background: var(--surface);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  padding: 8px 14px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+table.data-table td {
+  padding: 9px 14px;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-weight: 300;
+  text-align: right;
+}
+
+table.data-table tr:last-child td { border-bottom: none; }
+table.data-table tr:nth-child(even) td { background: rgba(240,235,227,0.4); }
+
+table.data-table td.val-flag {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+table.data-table td.val-ok { color: var(--text-soft); }
+
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -2490,7 +2549,7 @@ const MODULES = {
 <p><strong>מסלול ל-ASCVD:</strong> Hyperinsulinemia → שינויי אנדותל → Endothelial dysfunction → LDL oxidation → Foam cells → Plaque. במקביל: AGEs → Glycation of ApoB → LDL retention.</p>
 <p><strong>Risk Stratification:</strong> מעבר ל-LDL הקלאסי — נדרש: ApoB, Lp(a), hsCRP, HOMA-IR, TG/HDL ratio, CAC Score בנבחרים.</p>`,
     scenario:{
-      setup:'מטופל בן 48: לחץ דם 128/82, גלוקוז בצום 99, TG 185, HDL 38, LDL 112, BMI 27.5, מותן 98 ס"מ. "הכולסטרול בסדר" אמר הרופא הקודם.',
+      setup:`מטופל בן 48. "הכולסטרול בסדר" אמר הרופא הקודם.<div class="data-table-wrap"><div class="data-table-title">פרופיל מטופל</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>לחץ דם</td><td class="val-flag">128/82 mmHg ⚑</td></tr><tr><td>גלוקוז בצום</td><td class="val-flag">99 mg/dL ⚑</td></tr><tr><td>TG</td><td class="val-flag">185 mg/dL ⚑</td></tr><tr><td>HDL</td><td class="val-flag">38 mg/dL ⚑</td></tr><tr><td>LDL</td><td class="val-ok">112 mg/dL</td></tr><tr><td>TG/HDL ratio</td><td class="val-flag">4.87 ⚑</td></tr><tr><td>BMI</td><td class="val-ok">27.5</td></tr><tr><td>מותן</td><td class="val-flag">98 ס"מ ⚑</td></tr></tbody></table></div>`,
       decision:'האם ה-Risk Assessment נכון?',
       options:[
         {text:'כן, כל הערכים בטווח נורמלי', correct:false},
@@ -2528,16 +2587,34 @@ const MODULES = {
       'לשלב גישה שירותית-קלינית עם ניתוח ביומרקרים'
     ],
     content:`<p>ה-Capstone מייצג שיא הקורס: שילוב ידע מכל שכבה לכדי ניתוח מקרה מלא ותכנון רב-מקצועי.</p>
-<p><strong>מקרה 1 — גבר 62, CEO, עמידות לאינסולין + Inflammaging:</strong><br>
-HbA1c 6.0%, HOMA-IR 4.2, hsCRP 3.8, ApoB 118, Lp(a) 67, VO₂max 32, DEXA: שריר -1.2 SD, שומן ויסצרלי גבוה.<br>
-<em>Hallmarks פעילים:</em> Inflammaging, Deregulated nutrient sensing, Mitochondrial dysfunction, Stem cell exhaustion מוקדם.<br>
-<em>נקודות מינוף:</em> Zone 2 training → AMPK activation, Time-Restricted Eating → שיפור HOMA-IR, Resistance training → Sarcopenia + אינסולין.</p>
-<p><strong>מקרה 2 — אשה 55, Lp(a) 142 nmol/L:</strong><br>
-ApoB 105, hsCRP 2.1, CAC 45, BMI 23, פעילה גופנית. "הכולסטרול בסדר" לפי הרופא הקודם.<br>
-<em>הערכה:</em> Lp(a) גבוה — גורם גנטי שאינו נשלט על ידי תזונה בלבד. CAC 45 = Plaque burden מוקדם.<br>
-<em>תיאום צוות:</em> רופא (PCSK9? Aspirin?), תזונאית (אנטי-דלקתי), מאמן (aerobic fitness כ-risk modifier).</p>`,
+
+<p><strong>מקרה 1 — גבר 62, CEO</strong> · עמידות לאינסולין + Inflammaging</p>
+<div class="data-table-wrap"><div class="data-table-title">פרופיל ביומרקרים</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody>
+<tr><td>HbA1c</td><td class="val-flag">6.0% ⚑</td></tr>
+<tr><td>HOMA-IR</td><td class="val-flag">4.2 ⚑</td></tr>
+<tr><td>hsCRP</td><td class="val-flag">3.8 mg/L ⚑</td></tr>
+<tr><td>ApoB</td><td class="val-flag">118 mg/dL ⚑</td></tr>
+<tr><td>Lp(a)</td><td class="val-ok">67 nmol/L</td></tr>
+<tr><td>VO₂max</td><td class="val-flag">32 ml/kg/min ⚑</td></tr>
+<tr><td>DEXA — שריר</td><td class="val-flag">-1.2 SD ⚑</td></tr>
+<tr><td>שומן ויסצרלי</td><td class="val-flag">גבוה ⚑</td></tr>
+</tbody></table></div>
+<p><em>Hallmarks פעילים:</em> Inflammaging, Deregulated nutrient sensing, Mitochondrial dysfunction, Stem cell exhaustion מוקדם.<br>
+<em>נקודות מינוף:</em> Zone 2 training → AMPK activation | Time-Restricted Eating → שיפור HOMA-IR | Resistance training → Sarcopenia + אינסולין.</p>
+
+<p><strong>מקרה 2 — אשה 55</strong> · Lp(a) גבוה + CAC מוקדם</p>
+<div class="data-table-wrap"><div class="data-table-title">פרופיל ביומרקרים</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody>
+<tr><td>Lp(a)</td><td class="val-flag">142 nmol/L ⚑</td></tr>
+<tr><td>ApoB</td><td class="val-flag">105 mg/dL ⚑</td></tr>
+<tr><td>hsCRP</td><td class="val-ok">2.1 mg/L</td></tr>
+<tr><td>CAC Score</td><td class="val-flag">45 ⚑</td></tr>
+<tr><td>BMI</td><td class="val-ok">23</td></tr>
+<tr><td>פעילות גופנית</td><td class="val-ok">פעילה</td></tr>
+</tbody></table></div>
+<p><em>הערכה:</em> Lp(a) גבוה — גורם גנטי שאינו נשלט על ידי תזונה בלבד. CAC 45 = Plaque burden מוקדם.<br>
+<em>תיאום צוות:</em> רופא (PCSK9? Aspirin?) · תזונאית (אנטי-דלקתי) · מאמן (aerobic fitness כ-risk modifier).</p>`,
     scenario:{
-      setup:'אשה 67, Parkinson\'s Stage 1, Sarcopenia מוכחת (DEXA), Mild Cognitive Impairment, HOMA-IR 3.8, שינה מקוטעת, גרה לבד. בן משפחה שואל: "מה הפרוטוקול שלכם?"',
+      setup:`בן משפחה שואל: "מה הפרוטוקול שלכם?"<div class="data-table-wrap"><div class="data-table-title">פרופיל מטופלת</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">67</td></tr><tr><td>אבחנה</td><td class="val-flag">Parkinson's Stage 1 ⚑</td></tr><tr><td>HOMA-IR</td><td class="val-flag">3.8 ⚑</td></tr><tr><td>DEXA</td><td class="val-flag">Sarcopenia מוכחת ⚑</td></tr><tr><td>קוגניציה</td><td class="val-flag">Mild Cognitive Impairment ⚑</td></tr><tr><td>שינה</td><td class="val-flag">מקוטעת ⚑</td></tr><tr><td>מצב חברתי</td><td class="val-flag">גרה לבד ⚑</td></tr></tbody></table></div>`,
       decision:'מה הצעד הראשון?',
       options:[
         {text:'מתחילים מיד בפרוטוקול כוח ו-Zone 2', correct:false},
@@ -2757,7 +2834,7 @@ Object.assign(MODULES, {
 <p><strong>OSA — דום נשימה חסימתי:</strong> חסימות חוזרות בשינה → ירידות חמצן, עוררות חלקית, שינה לא משקמת. נקשר ל-HTN, הפרעות קצב, עלייה בסיכון לבבי, עייפות יומית, פגיעה קוגניטיבית. לא להסתפק בשאלה "איך אתה ישן?" — לסקור עם STOP-BANG כאשר יש: נחירות, עייפות יומית, עודף משקל, לחץ דם גבוה, יקיצות מרובות.</p>
 <p><strong>גישה קלינית להערכת שינה — 5 שכבות:</strong> (1) משך, (2) איכות, (3) תזמון, (4) סימני הפרעת שינה, (5) השלכות יומיות. היגיינת שינה: שעות קבועות, אור בבוקר, צמצום מסכים בלילה, קפאין בשעות מוקדמות, סביבה קרירה וחשוכה.</p>`,
     scenario:{
-      setup:'אשה בת 47, מתח כרוני, מדווחת על שינה מקוטעת וקושי להירדם. בבדיקת שינה: AHI=12 (OSA קל-בינוני) + ירידה בשינה עמוקה.',
+      setup:`אשה בת 47, מתח כרוני, שינה מקוטעת וקושי להירדם.<div class="data-table-wrap"><div class="data-table-title">בדיקת שינה</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>AHI</td><td class="val-flag">12 (OSA קל-בינוני) ⚑</td></tr><tr><td>שינה עמוקה</td><td class="val-flag">ירידה ⚑</td></tr><tr><td>מתח</td><td class="val-flag">כרוני ⚑</td></tr></tbody></table></div>`,
       decision:'מהו הפרוטוקול ומי בצוות מטפל במה?',
       options:[
         {text:'CPAP בלבד', correct:false},
@@ -2800,7 +2877,7 @@ Object.assign(MODULES, {
 <p><strong>התערבויות עם בסיס ראייתי:</strong> מיינדפולנס/MBSR — ירידה בקורטיזול ובתגובתיות יתר. פעילות גופנית — הפחתת קורטיזול בסיסי, שיפור ויסות רגשי, עלייה ב-BDNF. קשרים חברתיים — קשור לסיכון תמותה, חוסן נפשי, יכולת התמודדות. שינה — קשר דו-כיווני: סטרס פוגע בשינה, שינה גרועה מגבירה תגובתיות.</p>
 <p>כלים עם עניין גובר (בסיס ראייתי פחות חזק): HRV biofeedback, חשיפה לקור, תרגילי נשימה מובנים.</p>`,
     scenario:{
-      setup:'מנהל 47 עם לחץ דם 138/88, CRP 2.9, HbA1c 5.8, DHEA-S 90, קורטיזול בוקר גבוה. "אני לא בלחץ — אני רק עובד הרבה."',
+      setup:`מנהל 47: "אני לא בלחץ — אני רק עובד הרבה."<div class="data-table-wrap"><div class="data-table-title">פרופיל עומס אלוסטטי</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">47</td></tr><tr><td>לחץ דם</td><td class="val-flag">138/88 mmHg ⚑</td></tr><tr><td>CRP</td><td class="val-flag">2.9 mg/L ⚑</td></tr><tr><td>HbA1c</td><td class="val-flag">5.8% ⚑</td></tr><tr><td>DHEA-S</td><td class="val-flag">90 μg/dL ⚑</td></tr><tr><td>קורטיזול בוקר</td><td class="val-flag">גבוה ⚑</td></tr></tbody></table></div>`,
       decision:'מה העומס האלוסטטי ומה הגישה?',
       options:[
         {text:'הערכים לא גבוהים מספיק לטיפול', correct:false},
@@ -2850,7 +2927,7 @@ Object.assign(MODULES, {
 <p><strong>דוגמה — טסטוסטרון:</strong> TRAVERSE הראה שטסטוסטרון בהיפוגונדיזם מוכח לא נחות מפלצבו מבחינת MACE. אבל: אין הוכחה שמאריך חיים ללא היפוגונדיזם. כן לשקול עם היפוגונדיזם ברור. לא להציג ככלי כללי ל"שיפור לונג'ביטי".</p>
 <p><strong>שיתוף מטופל בקבלת החלטות:</strong> הצגה פשוטה של רמת הסיכון + הסבר על איכות הראיות + כמה אפשרויות סבירות + החלטה משותפת שמתאימה לפרופיל.</p>`,
     scenario:{
-      setup:'גבר 52, ללא תסמינים. CAC=120, ApoB גבוה, VO₂max אחוזון 30. שלושה רופאים נותנים שלוש המלצות שונות: רופא א\' — אין תסמינים, רק מעקב; רופא ב\' — סטטין אגרסיבי; רופא ג\' — גם הורדת סיכון תרופתית וגם עבודה על כושר, הרכב גוף וגורמים מטבוליים.',
+      setup:`גבר 52 ללא תסמינים. שלושה רופאים נותנים שלוש המלצות שונות. רופא א׳: רק מעקב. רופא ב׳: סטטין אגרסיבי. רופא ג׳: הורדת סיכון תרופתית + עבודה על כושר והרכב גוף.<div class="data-table-wrap"><div class="data-table-title">פרופיל מטופל</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">52</td></tr><tr><td>תסמינים</td><td class="val-ok">אין</td></tr><tr><td>CAC Score</td><td class="val-flag">120 ⚑</td></tr><tr><td>ApoB</td><td class="val-flag">גבוה ⚑</td></tr><tr><td>VO₂max</td><td class="val-flag">אחוזון 30 ⚑</td></tr></tbody></table></div>`,
       decision:'איזו גישה נכונה?',
       options:[
         {text:'א\' — אין תסמינים, אין צורך לפעול', correct:false},
@@ -2928,7 +3005,7 @@ Object.assign(MODULES, {
 <p><strong>Zone 2:</strong> ~60-70% VO₂max, אפשרות שיחה, לקטט נמוך. תורם: שיפור אירובי בסיסי, ניצול שומן, התאמות מיטוכונדריאליות, בסיס לאימון עצים. טעות נפוצה: להפוך כל אימון ל"קצת קשה" — לא מספיק קל לבסיס ולא מספיק קשה לשיפור תקרה.</p>
 <p><strong>Zone 5 / VO₂max Intervals:</strong> שיטת 4×4 (Wisløff) — 4 דקות גבוה + 4 דקות התאוששות × 4. שיפור גדול יותר ב-VO₂peak לעומת אימון מתון רציף. לא תחליף לבסיס — תוספת על בסיס. אצל בני 50+: רוב הנפח = Zone 2, חלק קטן = Zone 5, כוח = קבוע.</p>`,
     scenario:{
-      setup:'ספורטאי לשעבר בן 60, VO₂max אחוזון 40. מבקש להגיע לאחוזון 60 תוך 6 חודשים.',
+      setup:`ספורטאי לשעבר בן 60, מבקש לשפר כושר תוך 6 חודשים.<div class="data-table-wrap"><div class="data-table-title">פרופיל כושר</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">60</td></tr><tr><td>VO₂max</td><td class="val-flag">אחוזון 40 ⚑</td></tr><tr><td>יעד</td><td class="val-ok">אחוזון 60</td></tr><tr><td>מסגרת זמן</td><td class="val-ok">6 חודשים</td></tr></tbody></table></div>`,
       decision:'מה התוכנית?',
       options:[
         {text:'5 ימי אינטרוולים בשבוע מיד', correct:false},
@@ -2968,7 +3045,7 @@ Object.assign(MODULES, {
 מפרקים: OA, פציעות ישנות — לבחור עומס, טווח תנועה וקצב התקדמות נכון.<br>
 הפחתת סיכון: העלאה מדורגת, חימום ארוך, שליטה בתנועה, עבודה אקסצנטרית, מעקב כאב/התאוששות.</p>`,
     scenario:{
-      setup:'מטופלת בת 63, ALMI גבולי, אוסטאופניה T-score -1.8, כאבי ברך אחרי ריצה. מבקשת "לחזק שרירים".',
+      setup:`מטופלת בת 63, מבקשת "לחזק שרירים".<div class="data-table-wrap"><div class="data-table-title">פרופיל מטופלת</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">63</td></tr><tr><td>ALMI</td><td class="val-flag">גבולי ⚑</td></tr><tr><td>T-score</td><td class="val-flag">-1.8 (אוסטאופניה) ⚑</td></tr><tr><td>כאב ברך</td><td class="val-flag">אחרי ריצה ⚑</td></tr></tbody></table></div>`,
       decision:'מה כוללת תוכנית 12 שבועות?',
       options:[
         {text:'ריצה ועומסי כוח כבדים מהר — היא צריכה לחזק', correct:false},
@@ -3006,7 +3083,7 @@ Object.assign(MODULES, {
 <p><strong>נפילות:</strong> 30% מבני 65+ נופלים לפחות פעם/שנה. שבר צוואר ירך: תמותה שנה ראשונה ~20-25%. נפילה → פחד → פחות תנועה → פחות כוח → נפילה נוספת. מניעה: שיווי משקל, כוח, סביבת בית, ויטמין D, זיהוי מוקדם. Otago — תוכנית שיטתית לכוח/שיווי משקל/מניעת נפילות.</p>
 <p><strong>סוללת בדיקות מעשית:</strong> מהירות הליכה, שיווי משקל (רגל אחת, צמוד, חצי-טנדם), Sit-to-Stand, TUG (קום-הלך-חזור), SPPB, הליכה איכותית, טווחי תנועה ומעברים.</p>`,
     scenario:{
-      setup:'מטופל בן 68, SPPB=8, שיווי משקל רגל אחת 4 שניות, TUG=13 שניות.',
+      setup:`מטופל בן 68, חשש מנפילות.<div class="data-table-wrap"><div class="data-table-title">מבחני תפקוד</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>SPPB</td><td class="val-flag">8/12 ⚑</td></tr><tr><td>שיווי משקל רגל אחת</td><td class="val-flag">4 שניות ⚑</td></tr><tr><td>TUG</td><td class="val-flag">13 שניות ⚑</td></tr></tbody></table></div>`,
       decision:'מה רמת הסיכון ומה התוכנית?',
       options:[
         {text:'SPPB=8 — בסדר, ממשיך כרגיל', correct:false},
@@ -3044,7 +3121,7 @@ Object.assign(MODULES, {
 <p><strong>מה לא לעשות אוטומטית:</strong> ארתרוסקופיה ב-OA ניווני — לרוב לא מביאה שיפור ארוך-טווח. הזרקות: חומצה היאלורונית — לא עקבי; PRP — תמונה לא אחידה. קודם כל — טיפול שמרני מסודר ותגובה לאורך זמן.</p>
 <p><strong>גבולות התפקיד:</strong> כן: הערכת תפקוד, מיפוי כאב/תנועה, בניית תוכנית, עקיבה לאורך זמן. לא: התעלמות מסימנים לא מתאימים, עיכוב הפניה כשיש Red Flags.</p>`,
     scenario:{
-      setup:'מטופלת 62, OA דו-צדדי בברכיים, BMI 29, WOMAC גבוה. מבקשת "משהו לכאב".',
+      setup:`מטופלת 62, מבקשת "משהו לכאב".<div class="data-table-wrap"><div class="data-table-title">פרופיל מטופלת</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>גיל</td><td class="val-ok">62</td></tr><tr><td>OA</td><td class="val-flag">דו-צדדי בברכיים ⚑</td></tr><tr><td>BMI</td><td class="val-flag">29 ⚑</td></tr><tr><td>WOMAC</td><td class="val-flag">גבוה ⚑</td></tr></tbody></table></div>`,
       decision:'מה תוכנית 8 שבועות?',
       options:[
         {text:'הזרקת חומצה היאלורונית ישירות', correct:false},
@@ -3118,7 +3195,7 @@ Object.assign(MODULES, {
 <p><strong>תזונה אנטי-דלקתית — מה מחזיק ומה לא:</strong> Icosapent Ethyl (REDUCE-IT): 4 גרם/יום → -25% MACE בסיכון גבוה עם סטטינים. לא כל "אומגה 3" זהה. סיבים תזונתיים = עוגן חזק: שובע, גלוקוז, בריאות מעי, SCFA, עומס דלקתי. פוליפנולים (קוורצטין, רזברטרול, כורכומין): מרשים במעבדה, קשיי ספיגה בבני אדם. Ultra-processed food: קשר עקבי לתחלואה ותמותה — עיקר הראיות תצפיתיות.</p>
 <p><strong>4 מוקדי התערבות ראשיים:</strong> מבנה ארוחות (חלבון + סיבים + פחות פחמימות מהירות), צפיפות תזונתית, פיזור גלוקוז (הליכה, ישיבה פחות), ישימות לאורך זמן.</p>`,
     scenario:{
-      setup:'מטופלת HOMA-IR 3.1, TG גבוהים, היקף מותניים >88 ס"מ. שבוע CGM: עלייה חדה בארוחת בוקר עתירת פחמימות, ערכים מעט גבוהים בלילה, אחרי הליכה — עלייה מתונה יותר.',
+      setup:`שבוע נתוני CGM + פרופיל מטבולי.<div class="data-table-wrap"><div class="data-table-title">פרופיל מטבולי + CGM</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>HOMA-IR</td><td class="val-flag">3.1 ⚑</td></tr><tr><td>TG</td><td class="val-flag">גבוהים ⚑</td></tr><tr><td>היקף מותניים</td><td class="val-flag">>88 ס"מ ⚑</td></tr><tr><td>CGM — בוקר</td><td class="val-flag">עלייה חדה אחרי פחמימות ⚑</td></tr><tr><td>CGM — לילה</td><td class="val-flag">ערכים גבוהים מעט ⚑</td></tr><tr><td>CGM — אחרי הליכה</td><td class="val-ok">עלייה מתונה</td></tr></tbody></table></div>`,
       decision:'מה משנים ראשון?',
       options:[
         {text:'מתחילים בTRE קשוח 16/8', correct:false},
@@ -3345,41 +3422,276 @@ Maintenance: המצב הנפוץ ביותר מגיל 50 — שמירת הרכב 
   30:{
     title:'מבחן סיום, הערכת יחידות ותעודה',
     layer:4, type:'מבחן סיום + טקס', depth:'הערכה',
-    objectives:['לאמוד שליטה ביכולות הליבה של הקורס','לזהות פערי ידע שדורשים חיזוק','לסיים עם משוב אישי ותעודה'],
-    content:`<p><strong>מבנה מבחן הסיום:</strong><br>
-חלק א — 50 שאלות אמריקאיות (40 נקודות): שליטה תיאורטית בכל שכבות הקורס.<br>
-חלק ב — 3 מיני-מקרים (40 נקודות): ניתוח קצר + תוכנית פעולה לכל מקרה.<br>
-חלק ג — Reflective Essay (20 נקודות): "מה השתנה בגישתי הקלינית לאחר הקורס?"</p>
-<p>ציון עובר: 70% | ציון הצטיינות: 90%</p>
-<p><strong>מה המבחן בודק:</strong> (1) האם מבין את החומר, (2) האם יודע להפעיל אותו במקרים אמיתיים, (3) האם נוצר שינוי באופן החשיבה המקצועי. שאלות = מושגים + מנגנונים + גבולות אחריות. מקרים = אינטגרציה + סדרי עדיפויות + החלטה. Essay = הבנה מקצועית, לא שינון.</p>
-<p><strong>תוכנית פיתוח אישית:</strong> לאחר המבחן — דוח אישי: תחומי חוזק + תחומים לחיזוק + 3 מקורות/כיווני למידה להמשך. הסיום = נקודת מוצא להמשך פיתוח, לא רק ציון.</p>`,
+    objectives:[
+      'לאמוד שליטה ביכולות הליבה של הקורס בכל ארבע השכבות',
+      'לזהות פערי ידע שדורשים חיזוק והמשך לימוד',
+      'לסיים עם משוב אישי ותוכנית פיתוח מקצועית',
+      'לקבל תעודת סיום רשמית של Tomorrow Clinical Longevity Program'
+    ],
+    content:`<p><strong>ברכות — הגעת ליום האחרון.</strong> שלושים יום, ארבע שכבות, עשרות מנגנונים, מקרים, תרחישים וכלים קליניים. יום 30 הוא לא רק מבחן — הוא הזדמנות לראות את הדרך שעשית.</p>
+
+<p><strong>מבנה מבחן הסיום — 3 חלקים:</strong><br>
+<strong>חלק א — 20 שאלות אמריקאיות (40 נקודות)</strong><br>
+בודק שליטה תיאורטית בכל שכבות הקורס: מנגנונים, ביומרקרים, פרוטוקולים קליניים, גבולות אחריות, שירות, תזונה ואימון. כל שאלה שווה 2 נקודות.<br><br>
+<strong>חלק ב — 3 מיני-מקרים (40 נקודות)</strong><br>
+כל מקרה מציג פרופיל מטופל מורכב. הנדרש: זיהוי הבעיה המרכזית + סדרי עדיפויות + תוכנית פעולה + חלוקת תפקידים בצוות.<br><br>
+<strong>חלק ג — Reflective Essay (20 נקודות)</strong><br>
+שאלה אחת: <em>"מה השתנה בגישתי הקלינית לאחר הקורס? תן דוגמה ספציפית."</em><br>
+נבדק: עומק החשיבה, יישום אמיתי, ניסוח מקצועי.</p>
+
+<p><strong>ציון עובר: 70 | ציון הצטיינות: 90</strong></p>
+
+<p><strong>מה המבחן לא בודק:</strong> שינון מילולי, פרוטוקולים בעל-פה, מספרים מדויקים. המבחן בודק — האם יש לך מסגרת חשיבה קלינית שמאפשרת לך להתמודד עם מקרה שלא ראית.</p>
+
+<p><strong>תוכנית פיתוח אישית:</strong> לאחר המבחן כל משתתף מקבל פידבק אישי: תחומי חוזק + 2-3 תחומים לחיזוק + כיווני קריאה המשך. הסיום הוא נקודת מוצא, לא נקודת סיום.</p>`,
+
     scenario:{
-      setup:'מסיים הקורס לאחר 30 יום. כל הידע ממודולים 1-29 נדרש לאינטגרציה.',
-      decision:'מה מייחד חשיבה קלינית טובה בלונג\'ביטי?',
+      setup:`מטופל בן 54: "הרופא אמר שהכל בסדר אבל אני מרגיש שמשהו לא בסדר."<div class="data-table-wrap"><div class="data-table-title">בדיקות — "הכל בנורמה"</div><table class="data-table"><thead><tr><th>פרמטר</th><th>ערך</th></tr></thead><tbody><tr><td>LDL</td><td class="val-ok">118 mg/dL</td></tr><tr><td>HbA1c</td><td class="val-flag">5.7% ⚑</td></tr><tr><td>TG</td><td class="val-flag">178 mg/dL ⚑</td></tr><tr><td>HDL</td><td class="val-flag">41 mg/dL ⚑</td></tr><tr><td>TG/HDL ratio</td><td class="val-flag">4.34 ⚑</td></tr><tr><td>לחץ דם</td><td class="val-flag">131/85 mmHg ⚑</td></tr><tr><td>BMI</td><td class="val-ok">27</td></tr><tr><td>מותן</td><td class="val-flag">97 ס"מ ⚑</td></tr></tbody></table></div>`,
+      decision:'מה הצעד הראשון?',
       options:[
-        {text:'לזכור כמה שיותר פרוטוקולים','correct':false},
-        {text:'לחבר מנגנון ביולוגי + תמונה קלינית + סדרי עדיפויות + שיתוף מטופל + תיאום צוותי לכדי תוכנית אחת ישימה', correct:true},
-        {text:'להזמין כמה שיותר בדיקות','correct':false},
-        {text:'לעקוב בדיוק אחרי פרוטוקול קבוע','correct':false},
+        {text:'להסכים עם הרופא הקודם — הכל בנורמה', correct:false},
+        {text:'לזהות Pattern Recognition: Metabolic Syndrome מוקדם — TG/HDL 4.3 (>3.5 = חשד IR), HbA1c 5.7 (Prediabetes), HTN Stage 1, WC גבולי. לבקש: HOMA-IR, ApoB, Lp(a). תחושת המטופל היא מידע קליני חשוב.', correct:true},
+        {text:'להסביר שהוא פשוט "קצת עייף"', correct:false},
+        {text:'להפנות מיידית לקרדיולוג', correct:false},
       ],
-      debrief:'ב נכונה. לונג\'ביטי medicine = שילוב שכבות. לא שינון פרוטוקול — חשיבה מנגנונית + קלינית + שירותית + מערכתית לתוצאה אחת: מטופל שמקבל תוכנית ישימה, מובנת ומותאמת לו.'
+      debrief:'ב נכונה. זה בדיוק מה שלונג\'ביטי medicine מלמד: להסתכל על הפרופיל כולו, לא על כל מדד בנפרד. TG/HDL >3.5 = surrogate ל-IR. HbA1c 5.7 = Prediabetes ולא "תקין". תחושת המטופל שמשהו לא בסדר — נלקחת ברצינות כנתון קליני. זה ה-shift שהקורס הזה בא לייצר.'
     },
+
     takeaways:[
-      'לונג\'ביטי = שינוי בגיל ההתערבות — לפני הביטוי הקליני, כשיש עוד מה לשמר',
-      'כל ה-30 ימים בנויים על ידע מצטבר: שירות → מדע → דומיין → אינטגרציה',
-      'ציון 70% = עבר. ציון 90% = הצטיינות',
-      'תעודת הסיום + תוכנית פיתוח אישית = נקודת מוצא, לא נקודת סיום',
+      'לונג\'ביטי = שינוי בגיל ההתערבות: לפני הביטוי הקליני, כשיש עוד רזרבה לשמר',
+      'Pattern Recognition > מדדים בנפרד: הפרופיל המלא מספר את הסיפור',
+      'כל מקצוע בצוות הוא עיניים אחרות — תיאום הוא לא "נחמד", הוא קליני-בטיחותי',
+      'הקורס לא מסתיים ביום 30 — הוא מתחיל ביישום. המבחן הוא הנקודה שממנה מתחילים לבנות',
+      'תודה על 30 הימים. Tomorrow — Clinical Longevity Program',
     ],
+
     redFlags:[
-      'חשיבה רדוקציוניסטית: טיפול ב-Hallmark אחד, ביומרקר אחד, מקצוע אחד — תמיד לחפש את התמונה המלאה',
-      'ידע תיאורטי ללא יישום = לא מספיק — הקורס נבנה למטרת פרקטיקה',
+      'חשיבה רדוקציוניסטית — Hallmark אחד, ביומרקר אחד, מקצוע אחד. תמיד התמונה המלאה',
+      '"הכל בנורמה" ≠ "אין סיכון" — לדעת להבחין בין reference range לבין optimal range',
     ],
-    quiz:[{
-      q:'מה ההבדל המרכזי בין רפואה רגילה לרפואת לונג\'ביטי?',
-      opts:['יותר בדיקות','פחות תרופות','רף ההתערבות מוקדם יותר — לזהות ולשמר תפקוד לפני הביטוי הקליני, לא רק לטפל אחרי','אין הבדל'],
-      correct:2,
-      exp:'לא מדע שונה — שינוי בגיל ההתערבות. רפואה רגילה = מחלה ברורה → פעולה. לונג\'ביטי = מגמה מוקדמת, ירידה תפקודית תת-קלינית, פער Healthspan-Lifespan → פעולה כשעוד אפשר לשמר.'
-    }]
+
+    quiz:[
+      {
+        q:'מטופל עם Lp(a) = 145 nmol/L. הוא שואל: "אם אשמור על דיאטה ים-תיכונית, זה ירד?" מה עונים?',
+        opts:[
+          'כן, תזונה נכונה מורידה Lp(a)',
+          'Lp(a) נקבע ברובו גנטית (80-90%) ומגיב מעט מאוד לתזונה — המטרה היא לנהל את שאר גורמי הסיכון בצורה מדויקת יותר',
+          'לא ידוע אם Lp(a) מסוכן',
+          'מספיק ליטול סטטינים'
+        ],
+        correct:1,
+        exp:'Lp(a) הוא גורם סיכון גנטי דומיננטי. סטטינים עשויים אפילו להעלותו מעט. ההתערבות: ניהול מדויק של ApoB, לחץ דם, דלקת. PCSK9i ו-Pelacarsen — בחלק מהמקרים.'
+      },
+      {
+        q:'מה ההבדל בין Healthspan ל-Lifespan?',
+        opts:[
+          'אין הבדל — הם מדדים זהים',
+          'Lifespan = משך חיים כולל. Healthspan = שנות חיים בתפקוד מיטבי. הפער הנוכחי ~9-12 שנה',
+          'Healthspan הוא מדד גנטי בלבד',
+          'Lifespan הוא מדד קוגניטיבי'
+        ],
+        correct:1,
+        exp:'הפער של 9-12 שנים הוא הבסיס לכל הקורס. לונג\'ביטי medicine מנסה לצמצם את הפער — לא בהכרח להאריך Lifespan, אלא לדחות את תחילת הידרדרות ה-Healthspan.'
+      },
+      {
+        q:'מטופל בא עם כעס: "שילמתי על תוכנית מלאה ואחרי 3 חודשים אני לא רואה שיפור." מה הצעד הראשון?',
+        opts:[
+          'להסביר שתוצאות לוקחות זמן',
+          'לאשר את חוויתו ולשאול שאלה פתוחה: "ספר לי מה ציפית לקבל ומה חווית בפועל" — לפני כל הסבר',
+          'להציע פיצוי כספי',
+          'להפנות אותו לרופא'
+        ],
+        correct:1,
+        exp:'De-escalation: קודם אישור חוויה ושאלה פתוחה — רק אחר כך עובדה ותכנית. פיצוי מיידי קובע פרצדנט שגוי. הסבר לפני הקשבה = הגנתיות שמחמירה.'
+      },
+      {
+        q:'מה Cellular Senescence ולמה הוא מסוכן?',
+        opts:[
+          'תא שמת — מסיר את עצמו מהרקמה',
+          'תא שנמצא ב-permanent growth arrest, אינו מתחלק ואינו מת, ומפריש SASP שמדלקת רקמות שכנות',
+          'תא שמגביר חלוקה — סיכון לסרטן',
+          'תופעה שמופיעה רק אחרי גיל 80'
+        ],
+        correct:1,
+        exp:'SASP (Senescence-Associated Secretory Phenotype) = תערובת ציטוקינים הרסנית שמייצרת Inflammaging, מגייסת תאים שכנים ל-Senescence, ומקדמת מיקרו-סביבה פרו-סרטנית.'
+      },
+      {
+        q:'TG/HDL ratio = 4.2. מה המשמעות הקלינית?',
+        opts:[
+          'ערך תקין',
+          'Surrogate marker לעמידות אינסולין — מעל 3.5 מצריך HOMA-IR ובחינה מטבולית',
+          'רק מדד תזונתי',
+          'רלוונטי רק בסוכרתיים'
+        ],
+        correct:1,
+        exp:'TG/HDL >3.5 = surrogate marker מקובל ל-Insulin Resistance לפני שיש עלייה ברורה בגלוקוז. בשילוב עם WC, לחץ דם וגלוקוז גבולי — מצביע על Metabolic Syndrome מוקדם.'
+      },
+      {
+        q:'מה Zone 2 training ולמה הוא הבסיס לתכנון אירובי?',
+        opts:[
+          'אימון עצים לשיפור VO₂max',
+          'עבודה אירובית ב-60-70% VO₂max שמייצרת התאמות מיטוכונדריאליות, ניצול שומן, ובסיס אירובי לאימון עצים בהמשך',
+          'אימון כוח בטמפו איטי',
+          'הליכה בקצב נמוך בלבד'
+        ],
+        correct:1,
+        exp:'Zone 2 בונה בסיס אירובי, שיפור ניצול שומן והתאמות מיטוכונדריאליות. הטעות הנפוצה: להפוך כל אימון ל"קצת קשה" — לא מספיק קל לבסיס ולא מספיק קשה לשיפור תקרה.'
+      },
+      {
+        q:'פיזיותרפיסט מזהה TUG = 14 שניות בגבר בן 70. מה המשמעות?',
+        opts:[
+          'תוצאה תקינה לגיל',
+          'TUG >12 שניות = סיכון גבוה לנפילות — מחייב תוכנית מלאה: שיווי משקל, כוח, התאמת סביבה, תיאום צוות',
+          'לחכות לנפילה ראשונה לפני התערבות',
+          'מספיק ליטול ויטמין D'
+        ],
+        correct:1,
+        exp:'TUG >12 שניות = Red Flag לנפילות. 30% מבני 65+ נופלים/שנה; שבר צוואר ירך = תמותה ~20-25% בשנה הראשונה. לא מחכים לנפילה — מתערבים מוקדם.'
+      },
+      {
+        q:'מה עמידות אנאבולית (Anabolic Resistance)?',
+        opts:[
+          'עמידות לכאבי שרירים לאחר אימון',
+          'ירידה ביעילות תגובת השריר המזדקן לחלבון ולאימון — מחייב חלבון מלא עם לאוצין מספיק בכל ארוחה',
+          'תופעה גנטית שאי אפשר לשנות',
+          'ירידה ביכולת האירובית'
+        ],
+        correct:1,
+        exp:'Anabolic Resistance = הגוף המבוגר דורש גירוי גדול יותר לאותה תגובה. פתרון: 25-40 גרם חלבון מלא/ארוחה עם ~2.8-3.5 גרם לאוצין. BCAA בלבד = לא מספיק.'
+      },
+      {
+        q:'מה ההבדל בין Icosapent Ethyl (REDUCE-IT) לתוסף אומגה-3 רגיל?',
+        opts:[
+          'אין הבדל — כולם אומגה-3',
+          'EPA טהור במינון 4 גרם/יום הוכח להפחית MACE ב-25% — תוסף כללי EPA+DHA (STRENGTH) לא הראה אותה תועלת',
+          'Icosapent Ethyl זול יותר',
+          'תוסף רגיל עדיף כי פחות תופעות לוואי'
+        ],
+        correct:1,
+        exp:'REDUCE-IT: EPA טהור 4 גרם/יום → -25% MACE בסיכון גבוה עם סטטינים. STRENGTH: EPA+DHA = לא הראה תועלת. לא ניתן להחליף ביניהם — ההבדל המנגנוני עדיין לא מוסבר לחלוטין.'
+      },
+      {
+        q:'CGM מראה פיק גלוקוז חד אחרי ארוחת בוקר עם יוגורט ופרי. מה עושים?',
+        opts:[
+          'אוסרים פרי ויוגורט לחלוטין',
+          'בוחנים דפוס: להוסיף חלבון/שומן לארוחה, הליכה 10-15 דקות אחרי — לבדוק אם העקומה משתנה לפני שמסיקים מסקנה',
+          'CGM פיק = כישלון — לעצור הכל',
+          'עקומה שטוחה = הכל בסדר, פיק = בעיה חמורה'
+        ],
+        correct:1,
+        exp:'CGM = כלי לסקרנות, לא שיפוט. לחפש דפוסים, לשנות משתנה אחד ולבדוק. פיק אחרי ארוחה אחת לא מספר את הסיפור המלא — ההקשר, ההרכב, התזמון וההליכה אחרי משנים את התמונה.'
+      },
+      {
+        q:'מה SBAR ומה החלק שהכי הרבה אנשי צוות מדלגים עליו?',
+        opts:[
+          'Situation — מה קרה',
+          'Recommendation — מה נדרש. בלעדיו הפנייה נשמעת כעדכון, לא כבקשה לפעולה',
+          'Background — הקשר',
+          'Assessment — פרשנות'
+        ],
+        correct:1,
+        exp:'SBAR: Situation, Background, Assessment, Recommendation. ה-R הוא מה שהופך עדכון לפנייה שמחייבת תגובה. בלעדיו: "אמרתי למישהו" ≠ "משהו יקרה".'
+      },
+      {
+        q:'מה הפרדוקס של Immunosenescence?',
+        opts:[
+          'מערכת חיסון חזקה מדי עם הגיל',
+          'מערכת נחלשת מול איומים חדשים ובו-זמנית פעילה יותר בדלקת כרונית — Inflammaging',
+          'מערכת שמתאוששת טוב יותר עם הגיל',
+          'אין פרדוקס — הכל יורד'
+        ],
+        correct:1,
+        exp:'ككל שהגיל עולה: פחות יכולת הגנה מול איומים חדשים (Immunosenescence) + יותר דלקת כרונית ברקע (Inflammaging). השילוב הוא אחד מביטויי ההזדקנות המרכזיים.'
+      },
+      {
+        q:'מה Allostatic Load?',
+        opts:[
+          'מדד לחץ דם מאמץ',
+          'נזק מצטבר בכמה מערכות ביולוגיות מהפעלה חוזרת של מנגנוני סטרס — מצטבר גם ללא תחושה סובייקטיבית של לחץ',
+          'סוג של בדיקת דם',
+          'מדד לעייפות שרירים'
+        ],
+        correct:1,
+        exp:'עומס אלוסטטי מודד: לב/כלי דם + מטבולי (HbA1c, TG/HDL) + חיסוני (CRP, IL-6) + הורמונלי (קורטיזול, DHEA-S). עומס גבוה נקשר לירידה קוגניטיבית, מוגבלות ותמותה.'
+      },
+      {
+        q:'מטופלת 62 עם OA בברכיים. מה קו הטיפול הראשון?',
+        opts:[
+          'הזרקת חומצה היאלורונית',
+          'ארתרוסקופיה',
+          'פיזיותרפיה: חיזוק שרירים + העמסה מדורגת + חינוך לכאב + הפחתת פחד מתנועה',
+          'מנוחה מוחלטת'
+        ],
+        correct:2,
+        exp:'OA = פעילות מותאמת כקו ראשון (Cochrane). מנוחה מחמירה חולשה. ארתרוסקופיה ב-OA ניווני — לרוב לא מועילה ארוכת-טווח. הזרקות — שיקול רק לאחר כישלון טיפול שמרני.'
+      },
+      {
+        q:'מה מייחד Sarcopenic Obesity ולמה BMI מסתיר אותה?',
+        opts:[
+          'BMI גבוה מדי',
+          'שילוב של שומן גבוה + שריר נמוך + תפקוד ירוד. BMI יכול להיות "תקין" כי שומן מחליף שריר — הסיכון האמיתי מוסתר',
+          'מצב שמופיע רק אחרי גיל 70',
+          'ניתן לזהות רק עם בדיקת דם'
+        ],
+        correct:1,
+        exp:'BMI לא מבחין בין שומן לשריר. DEXA + ALMI + Grip strength + Sit-to-Stand = הדרך לחשוף Sarcopenic Obesity. BMI 24 יכול להסתיר ALMI נמוך ושריר לא תפקודי.'
+      },
+      {
+        q:'מה ה-Glymphatic System ומדוע שינה עמוקה קריטית?',
+        opts:[
+          'מערכת עיכול מוחית',
+          'מנגנון פינוי פסולת מוחית (עמילואיד, טאו) שפועל בעיקר בשינה עמוקה — חסרה = הצטברות פסולת מוחית',
+          'מערכת חיסון של המוח',
+          'ממברנה שמגנה על תאי עצב'
+        ],
+        correct:1,
+        exp:'המערכת הגלימפטית מפנה פסולת מטבולית בשינה עמוקה. ירידה בשינה עמוקה עם הגיל = פחות פינוי = צבירה של עמילואיד וטאו לאורך זמן. קשר ישיר לסיכון לאלצהיימר.'
+      },
+      {
+        q:'מטופל עם CAC = 0 ו-Lp(a) = 160 nmol/L. האם הוא בסיכון נמוך?',
+        opts:[
+          'כן — CAC = 0 = אין Plaque',
+          'לא בהכרח — Lp(a) גבוה הוא גורם סיכון עצמאי גנטי שנשאר גם עם CAC = 0; הסיכון העתידי גבוה יותר',
+          'כן — Lp(a) לא מדד מאמת',
+          'CAC = 0 שולל כל סיכון קרדיווסקולרי'
+        ],
+        correct:1,
+        exp:'CAC = 0 מפחית סיכון לטווח קצר-בינוני אך לא מבטל סיכון עתידי. Lp(a) = 160 = גורם סיכון גנטי עצמאי שלא מגיב לתזונה/סטטינים. יש לנהל ApoB, לחץ דם ודלקת בצורה מדויקת יותר.'
+      },
+      {
+        q:'קורדינטורית שומעת מטופל אומר: "לפעמים אני לא רואה טעם להמשיך." מה עושה?',
+        opts:[
+          'מרגיעה ואומרת שהכל יהיה בסדר',
+          'מזהה רמז למצוקה נפשית — לא מסיימת שיחה, מפעילה פרוטוקול סיכון נפשי מיידי, מעדכנת גורם מוסמך עכשיו',
+          'שולחת SMS "אנחנו כאן בשבילך"',
+          'מחכה לפגישה הבאה'
+        ],
+        correct:1,
+        exp:'"לא רואה טעם להמשיך" = Red Flag מיידי. לא להשאיר הודעה, לא לחכות. הקשבה פעילה + וידוא בטיחות + העברה לגורם מוסמך עכשיו + תיעוד מיידי.'
+      },
+      {
+        q:'מה ההבדל בין Mediterranean Diet ל-MIND Diet?',
+        opts:[
+          'אין הבדל',
+          'Mediterranean = בסיס עם תמיכה ראייתית חזקה לבריאות קרדיו-מטבולית. MIND = שילוב Mediterranean+DASH עם דגש ספציפי על מזונות שנקשרו לשמירה על בריאות המוח',
+          'MIND = ים-תיכוני עם יותר אומגה-3',
+          'Mediterranean = רק לסיכון לבבי, MIND = רק לדמנציה'
+        ],
+        correct:1,
+        exp:'Mediterranean = בסיס ראייתי חזק לבריאות כוללת. MIND (Morris 2015) = Mediterranean + DASH עם דגש על ירקות עלים, אגוזים, פירות יער, דגים, קטניות. קשור לשיפור בריאות קוגניטיבית.'
+      },
+      {
+        q:'מה ההבדל בין ישיבת MDT לישיבת עדכונים?',
+        opts:[
+          'MDT ארוכה יותר',
+          'MDT = ישיבת החלטה עם תוצר מחויב: תוכנית אחת + חלוקת אחריות + לוח זמנים. ישיבת עדכונים = שיתוף מידע ללא הכרעה',
+          'MDT = רק לרופאים',
+          'אין הבדל משמעותי'
+        ],
+        correct:1,
+        exp:'MDT מסתיים רק כשיש תיעוד: סיכום מקרה + עיקרי דיון + החלטה + מי אחראי + לוח זמנים. בלי זה — גם ישיבה טובה מתפרקת אחרי שעה. "ישיבה שמסתיימת בלי החלטה — מייצרת בלבול".'
+      }
+    ]
   },
 });
 
@@ -3498,6 +3810,132 @@ function goToDay(d) {
   if (mbnMod) mbnMod.classList.add('active');
 }
 
+// ── DATA TABLE FORMATTER ──────────────────────────────────────
+// Detects "Key Value" or "Key: Value" pairs inside text and renders them as a table.
+// Works for lab results, functional test scores, patient profiles.
+
+const LAB_RANGES = {
+  // key patterns → { flag: fn(val) → bool means "flagged" }
+  'ldl':          v => parseFloat(v) >= 130,
+  'apob':         v => parseFloat(v) >= 110,
+  'lp(a)':        v => parseFloat(v) >= 75,
+  'hba1c':        v => parseFloat(v) >= 5.7,
+  'homa-ir':      v => parseFloat(v) >= 2.5,
+  'tg':           v => parseFloat(v) >= 150,
+  'hdl':          v => parseFloat(v) <= 40,
+  'tg/hdl':       v => parseFloat(v) >= 3.5,
+  'hs-crp':       v => parseFloat(v) >= 2.0,
+  'crp':          v => parseFloat(v) >= 2.0,
+  'bmi':          v => parseFloat(v) >= 27,
+  'vo2max':       v => parseFloat(v) <= 35,
+  'grip':         v => false,
+  'tug':          v => parseFloat(v) >= 12,
+  'sppb':         v => parseFloat(v) <= 9,
+  'ahi':          v => parseFloat(v) >= 5,
+  'dhea-s':       v => parseFloat(v) <= 100,
+  'testosterone': v => parseFloat(v) <= 300,
+  'egfr':         v => parseFloat(v) <= 60,
+  'almi':         v => false,
+  'alt':          v => parseFloat(v) >= 45,
+  'ast':          v => parseFloat(v) >= 40,
+  'vitd':         v => parseFloat(v) <= 30,
+  'vitamin d':    v => parseFloat(v) <= 30,
+  'il-6':         v => parseFloat(v) >= 3.0,
+  'cac':          v => parseFloat(v) > 0,
+  't-score':      v => parseFloat(v) <= -1.0,
+  'frax':         v => parseFloat(v) >= 10,
+  'bp':           v => false,
+  'לחץ דם':       v => false,
+  'מותן':         v => false,
+  'היקף מותניים':v => false,
+};
+
+function flagValue(key, rawVal) {
+  const k = key.toLowerCase().trim();
+  for (const [pattern, fn] of Object.entries(LAB_RANGES)) {
+    if (k.includes(pattern)) {
+      try { return fn(rawVal); } catch(e) { return false; }
+    }
+  }
+  return false;
+}
+
+function extractLabData(text) {
+  // Match patterns like: "Name Value Unit" or "Name: Value" or "Name = Value"
+  // Handles both Hebrew and English keys, numeric values with optional units
+  const patterns = [
+    // "LDL 118", "HbA1c 5.7", "TG 178" — space separated
+    /([A-Za-zא-ת][A-Za-zא-ת0-9\-\(\)\/\s]{1,30}?)\s*[=:]\s*(-?[\d.,]+\s*[A-Za-z/%₂²μ]*)/g,
+    // "LDL: 118 mg/dL"
+    /([A-Za-zא-ת][A-Za-zא-ת0-9\-\(\)\/]{1,25})\s+(-?[\d.,]+(?:\s*[A-Za-z/%₂²μ]+)?)/g,
+  ];
+  
+  const found = new Map();
+  for (const pat of patterns) {
+    let m;
+    pat.lastIndex = 0;
+    while ((m = pat.exec(text)) !== null) {
+      const key = m[1].trim().replace(/\s+/g, ' ');
+      const val = m[2].trim();
+      // Filter: key must be 2+ chars, val must have a number
+      if (key.length >= 2 && /\d/.test(val) && !found.has(key)) {
+        found.set(key, val);
+      }
+    }
+  }
+  return found;
+}
+
+function buildDataTable(pairs, title='נתוני מטופל') {
+  if (pairs.size === 0) return '';
+  let rows = '';
+  pairs.forEach((val, key) => {
+    const isFlagged = flagValue(key, val);
+    const valClass = isFlagged ? 'val-flag' : 'val-ok';
+    const flag = isFlagged ? ' ⚑' : '';
+    rows += `<tr>
+      <td>${key}</td>
+      <td class="${valClass}">${val}${flag}</td>
+    </tr>`;
+  });
+  return `<div class="data-table-wrap">
+    <div class="data-table-title">${title}</div>
+    <table class="data-table">
+      <thead><tr><th>פרמטר</th><th>ערך</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+// Render setup text: extract lab data → show table + remaining text
+function renderSetupWithTable(setupText) {
+  // Common inline data pattern: "Key Value, Key Value" in lab result strings
+  // Look for dense numeric clusters (3+ key:value pairs)
+  const pairs = extractLabData(setupText);
+  
+  if (pairs.size < 2) {
+    // Not enough data to warrant a table — just show text
+    return `<div class="scenario-text">${setupText}</div>`;
+  }
+
+  // Remove the data portion from the text and show table separately
+  // Clean text: remove the matched key-value pairs from the narrative
+  let cleanText = setupText;
+  pairs.forEach((val, key) => {
+    // Remove patterns like "Key Value," or "Key: Value" from text
+    const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleanText = cleanText.replace(new RegExp(escaped + '\\s*[=:]?\\s*' + val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[,.]?\\s*', 'gi'), '');
+  });
+
+  // Clean up multiple spaces/commas left over
+  cleanText = cleanText.replace(/,\s*,/g, ',').replace(/\s{2,}/g, ' ').replace(/^\s*[,.:]\s*/,'').trim();
+
+  return `
+    <div class="scenario-text">${cleanText}</div>
+    ${buildDataTable(pairs)}
+  `;
+}
+
 // ── RENDER ────────────────────────────────────────────────
 function renderModule(d) {
   const m = MODULES[d];
@@ -3551,7 +3989,9 @@ function renderModule(d) {
           <div class="scenario-dark-header">תרחיש קליני-שירותי</div>
           <div class="scenario-section">
             <div class="scenario-label">הגדרת מצב</div>
-            <div class="scenario-text editable-field" onclick="openEdit(${d},'scenario_setup','text')">${m.scenario.setup}</div>
+            <div class="editable-field" onclick="openEdit(${d},'scenario_setup','text')">
+              ${renderSetupWithTable(m.scenario.setup)}
+            </div>
           </div>
           <div class="scenario-section">
             <div class="scenario-label editable-field" onclick="openEdit(${d},'scenario_decision','text')">נקודת החלטה — ${m.scenario.decision}</div>
@@ -3611,7 +4051,9 @@ function renderModule(d) {
           ${m.quiz.map((q,qi)=>`
             <div class="quiz-q-block">
               <div class="quiz-q-eyebrow">שאלה ${qi+1}</div>
-              <div class="quiz-q-text editable-field" onclick="openEdit(${d},'quiz_q','text',${qi})">${q.q}</div>
+              <div class="quiz-q-text editable-field" onclick="openEdit(${d},'quiz_q','text',${qi})">
+                ${renderSetupWithTable(q.q)}
+              </div>
               <div class="quiz-opts">
                 ${q.opts.map((opt,oi)=>`
                   <div class="q-opt" onclick="pickQuiz(this,${oi===q.correct},'qe-${d}-${qi}',${q.correct})">
