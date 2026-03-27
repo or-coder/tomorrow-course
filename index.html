@@ -4743,16 +4743,6 @@ document.addEventListener('keydown', e => {
 
 // ── ADMIN PANEL ───────────────────────────────────────────────
 
-function toggleAdmin() {
-  const panel = document.getElementById('admin-panel');
-  if (panel.classList.contains('open')) {
-    closeAdmin();
-  } else {
-    renderUsers();
-    panel.classList.add('open');
-  }
-}
-
 function closeAdmin() {
   document.getElementById('admin-panel').classList.remove('open');
 }
