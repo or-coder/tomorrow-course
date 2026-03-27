@@ -4661,6 +4661,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Version check — forces re-login after major updates
+  const SESSION_VERSION = '2';
+  const storedVersion = localStorage.getItem('tmr_session_version');
+  if (storedVersion !== SESSION_VERSION) {
+    sessionStorage.removeItem('tmr_session');
+    localStorage.setItem('tmr_session_version', SESSION_VERSION);
+  }
+
   // Check existing session
   const user = getCurrentUser();
   if (user) {
@@ -4672,12 +4680,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── ADMIN PIN ─────────────────────────────────────────────────
 const ADMIN_PIN = '1313'; // ← שנה את הקוד כאן
 let pinBuffer = '';
+let pinVerified = false; // panel opens ONLY after correct PIN
 
 function toggleAdmin() {
-  // If already open — close
   const panel = document.getElementById('admin-panel');
   if (panel.classList.contains('open')) { closeAdmin(); return; }
-  // Else open PIN modal
+  // Always require PIN
+  pinVerified = false;
   openPinModal();
 }
 
@@ -4717,10 +4726,12 @@ function updatePinDots() {
 
 function checkPin() {
   if (pinBuffer === ADMIN_PIN) {
+    pinVerified = true;
     closePinModal();
     renderUsers();
     document.getElementById('admin-panel').classList.add('open');
   } else {
+    pinVerified = false;
     document.getElementById('pin-error').textContent = 'קוד שגוי — נסה שוב';
     pinBuffer = '';
     updatePinDots();
