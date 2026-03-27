@@ -1887,6 +1887,109 @@ body.edit-mode .editable-field:hover::after {
   .login-wordmark { font-size: 28px; letter-spacing: 6px; }
   .admin-panel { width: 100%; }
 }
+
+/* ── ADMIN PIN MODAL ── */
+.pin-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,21,18,0.75);
+  z-index: 600;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.pin-modal-overlay.open { display: flex; }
+
+.pin-modal {
+  background: var(--bg-dark);
+  width: 100%;
+  max-width: 300px;
+  padding: 40px 28px 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  animation: fadeUp .2s ease;
+  text-align: center;
+}
+
+.pin-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.pin-modal-sub {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 28px;
+}
+
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.pin-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  transition: all .15s;
+}
+.pin-dot.filled { background: var(--accent); border-color: var(--accent); }
+
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.pin-key {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 13px;
+  cursor: pointer;
+  transition: all .12s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.pin-key:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+.pin-key:active { background: rgba(139,74,47,0.35); }
+.pin-key.pin-del { font-size: 13px; color: rgba(255,255,255,0.35); }
+.pin-key.pin-empty { visibility: hidden; cursor: default; background: none; border: none; }
+
+.pin-error-msg {
+  font-size: 10px;
+  color: #f87171;
+  letter-spacing: 1px;
+  min-height: 14px;
+  margin-bottom: 10px;
+}
+
+.pin-cancel {
+  background: none;
+  border: none;
+  font-family: 'Heebo', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  cursor: pointer;
+  transition: color .2s;
+  padding: 8px 16px;
+}
+.pin-cancel:hover { color: rgba(255,255,255,0.45); }
 </style>
 </head>
 <body>
@@ -1933,6 +2036,36 @@ body.edit-mode .editable-field:hover::after {
     </div>
   </div>
   <button class="admin-logout-btn" onclick="doLogout()">יציאה מהמערכת</button>
+</div>
+
+<!-- PIN MODAL -->
+<div class="pin-modal-overlay" id="pin-modal-overlay">
+  <div class="pin-modal">
+    <div class="pin-modal-title">ניהול</div>
+    <div class="pin-modal-sub">הכנס קוד כניסה</div>
+    <div class="pin-dots" id="pin-dots">
+      <div class="pin-dot" id="pd0"></div>
+      <div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div>
+      <div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-error-msg" id="pin-error"></div>
+    <div class="pin-keypad">
+      <button class="pin-key" onclick="pinPress('1')">1</button>
+      <button class="pin-key" onclick="pinPress('2')">2</button>
+      <button class="pin-key" onclick="pinPress('3')">3</button>
+      <button class="pin-key" onclick="pinPress('4')">4</button>
+      <button class="pin-key" onclick="pinPress('5')">5</button>
+      <button class="pin-key" onclick="pinPress('6')">6</button>
+      <button class="pin-key" onclick="pinPress('7')">7</button>
+      <button class="pin-key" onclick="pinPress('8')">8</button>
+      <button class="pin-key" onclick="pinPress('9')">9</button>
+      <button class="pin-key pin-empty" disabled></button>
+      <button class="pin-key" onclick="pinPress('0')">0</button>
+      <button class="pin-key pin-del" onclick="pinDel()">⌫</button>
+    </div>
+    <button class="pin-cancel" onclick="closePinModal()">ביטול</button>
+  </div>
 </div>
 
 <div class="app">
@@ -4534,6 +4667,78 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-screen').classList.add('hidden');
     onLoginSuccess(user);
   }
+});
+
+// ── ADMIN PIN ─────────────────────────────────────────────────
+const ADMIN_PIN = '1313'; // ← שנה את הקוד כאן
+let pinBuffer = '';
+
+function toggleAdmin() {
+  // If already open — close
+  const panel = document.getElementById('admin-panel');
+  if (panel.classList.contains('open')) { closeAdmin(); return; }
+  // Else open PIN modal
+  openPinModal();
+}
+
+function openPinModal() {
+  pinBuffer = '';
+  updatePinDots();
+  document.getElementById('pin-error').textContent = '';
+  document.getElementById('pin-modal-overlay').classList.add('open');
+}
+
+function closePinModal() {
+  document.getElementById('pin-modal-overlay').classList.remove('open');
+  pinBuffer = '';
+  updatePinDots();
+}
+
+function pinPress(digit) {
+  if (pinBuffer.length >= ADMIN_PIN.length) return;
+  pinBuffer += digit;
+  updatePinDots();
+  if (pinBuffer.length === ADMIN_PIN.length) {
+    setTimeout(checkPin, 120);
+  }
+}
+
+function pinDel() {
+  pinBuffer = pinBuffer.slice(0, -1);
+  updatePinDots();
+  document.getElementById('pin-error').textContent = '';
+}
+
+function updatePinDots() {
+  for (let i = 0; i < ADMIN_PIN.length; i++) {
+    document.getElementById(`pd${i}`).classList.toggle('filled', i < pinBuffer.length);
+  }
+}
+
+function checkPin() {
+  if (pinBuffer === ADMIN_PIN) {
+    closePinModal();
+    renderUsers();
+    document.getElementById('admin-panel').classList.add('open');
+  } else {
+    document.getElementById('pin-error').textContent = 'קוד שגוי — נסה שוב';
+    pinBuffer = '';
+    updatePinDots();
+    // Shake dots
+    const dots = document.getElementById('pin-dots');
+    dots.style.transform = 'translateX(6px)';
+    setTimeout(() => dots.style.transform = 'translateX(-6px)', 80);
+    setTimeout(() => dots.style.transform = 'translateX(4px)', 160);
+    setTimeout(() => dots.style.transform = 'translateX(0)', 240);
+  }
+}
+
+// Keyboard support for PIN
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('pin-modal-overlay').classList.contains('open')) return;
+  if (e.key >= '0' && e.key <= '9') pinPress(e.key);
+  if (e.key === 'Backspace') pinDel();
+  if (e.key === 'Escape') closePinModal();
 });
 
 // ── ADMIN PANEL ───────────────────────────────────────────────
