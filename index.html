@@ -1597,7 +1597,123 @@ body.edit-mode .editable-field:hover::after {
   body.edit-mode .editable-field:hover::after { display: none; }
 }
 
-/* ── LOGIN SCREEN ── */
+/* ── LAYER 3 ROLE SELECTOR ── */
+.roles-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+.roles-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--layer3);
+  margin-bottom: 12px;
+}
+
+.roles-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: clamp(28px, 5vw, 42px);
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.roles-sub {
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.role-card {
+  background: var(--surface);
+  padding: 28px 24px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.role-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--layer3);
+  transform: scaleX(0);
+  transition: transform .2s ease;
+}
+
+.role-card:hover {
+  background: var(--white);
+  border-color: var(--border);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.role-card:hover::before { transform: scaleX(1); }
+
+.role-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.role-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.role-days {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--layer3);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.role-topics {
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.roles-all-link {
+  margin-top: 32px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color .2s;
+  text-align: center;
+}
+.roles-all-link:hover { color: var(--accent); }
+
+@media (max-width: 700px) {
+  .roles-grid { grid-template-columns: repeat(2, 1fr); }
+  .roles-wrap { padding: 32px 20px 80px; }
+}
+
+@media (max-width: 440px) {
+  .roles-grid { grid-template-columns: 1fr; }
+}
+/* ── END ROLE SELECTOR ── */
+</style>
 #login-screen {
   position: fixed;
   inset: 0;
@@ -2202,7 +2318,7 @@ body.edit-mode .editable-field:hover::after {
             <div class="lp-desc">Hallmarks, מסלולי mTOR/AMPK/Sirtuins, ביומרקרים, קרדיומטבולי, קוגניציה.</div>
             <div class="lp-count">10 מודולים</div>
           </div>
-          <div class="layer-panel" data-l="3" onclick="goToDay(16)">
+          <div class="layer-panel" data-l="3" onclick="showLayer3Roles()">
             <div class="lp-eyebrow">שכבה 03 · ימים 16–28</div>
             <div class="lp-title">Domain Deep Integration</div>
             <div class="lp-desc">העמקה לפי תפקיד: רופאים, מאמנים, פיזיותרפיסטים, תזונאים, קורדינטורים.</div>
@@ -2223,6 +2339,57 @@ body.edit-mode .editable-field:hover::after {
     <!-- MODULE -->
     <div class="screen" id="screen-module">
       <div class="module-wrap" id="module-content"></div>
+    </div>
+
+    <!-- LAYER 3 ROLE SELECTOR -->
+    <div class="screen" id="screen-layer3-roles">
+      <div class="roles-wrap">
+        <button class="module-back" onclick="showScreen('screen-map')" style="margin-bottom:32px">← מפת הקורס</button>
+        <div class="roles-eyebrow">שכבה 03 · Domain Deep Integration</div>
+        <h2 class="roles-title">בחר את תפקידך</h2>
+        <p class="roles-sub">קפוץ ישירות לתוכן הרלוונטי עבורך</p>
+        <div class="roles-grid">
+          <div class="role-card" onclick="goToDay(16)">
+            <div class="role-icon">⚕</div>
+            <div class="role-name">רופאים</div>
+            <div class="role-days">ימים 16–17</div>
+            <div class="role-topics">Risk Stratification מתקדם · תוכנית Longevity רב-שנתית</div>
+          </div>
+          <div class="role-card" onclick="goToDay(18)">
+            <div class="role-icon">🏃</div>
+            <div class="role-name">מאמנים</div>
+            <div class="role-days">ימים 18–19</div>
+            <div class="role-topics">Periodization · VO₂max · Strength Training · Sarcopenia</div>
+          </div>
+          <div class="role-card" onclick="goToDay(20)">
+            <div class="role-icon">🦴</div>
+            <div class="role-name">פיזיותרפיסטים</div>
+            <div class="role-days">ימים 20–21</div>
+            <div class="role-topics">Mobility Longevity · כאב כרוני · OA</div>
+          </div>
+          <div class="role-card" onclick="goToDay(22)">
+            <div class="role-icon">🥗</div>
+            <div class="role-name">תזונאים</div>
+            <div class="role-days">ימים 22–24</div>
+            <div class="role-topics">חלבון · Sarcopenia · Insulin Resistance · תוספים</div>
+          </div>
+          <div class="role-card" onclick="goToDay(25)">
+            <div class="role-icon">📋</div>
+            <div class="role-name">קורדינטוריות</div>
+            <div class="role-days">ימים 25–26</div>
+            <div class="role-topics">Follow-up System · Red Flags · ניהול מידע</div>
+          </div>
+          <div class="role-card" onclick="goToDay(27)">
+            <div class="role-icon">🔗</div>
+            <div class="role-name">מומחים חיצוניים</div>
+            <div class="role-days">ימים 27–28</div>
+            <div class="role-topics">אינטגרציה · ישיבת צוות MDT</div>
+          </div>
+        </div>
+        <div class="roles-all-link" onclick="goToDay(16)">
+          או עבור לתחילת שכבה 3 ←
+        </div>
+      </div>
     </div>
 
     <!-- MIDTERM -->
@@ -2541,7 +2708,7 @@ const MODULES = {
       'לנתח מדדי Healthspan קליניים ולחבר אותם לתכנון פרוטוקול',
       'להסביר מדוע הארכת Healthspan היא יעד בר-מדידה'
     ],
-    content:`<p><strong>Lifespan</strong> — משך החיים הכולל. <strong>Healthspan</strong> — שנות החיים בהן האדם מתפקד ברמה גופנית, קוגניטיבית ומנטלית מספקת לחיים עצמאיים ואיכותיים. הפער הנוכחי: כ-9–12 שנים. כלומר, שנים שנחיות בנטל תחלואה.</p>
+    content:`<p><strong>Lifespan</strong> — משך החיים הכולל. <strong>Healthspan</strong> — שנות החיים בהן האדם מתפקד ברמה גופנית, קוגניטיבית ומנטלית מספקת לחיים עצמאיים ואיכותיים. הפער הנוכחי: כ-9–12 שנים.</p>
 <p><strong>מנגנוני הפער:</strong> (1) <em>Inflammaging</em> — דלקת כרונית נמוכת-דרגה המתחילה בעשור הרביעי. (2) <em>Cellular senescence</em> — הצטברות תאים "זומבים" המפרישים SASP הרסני. (3) <em>Mitochondrial dysfunction</em> — ירידה ב-ATP, עלייה ב-ROS. (4) <em>Loss of proteostasis</em> — צבירת חלבונים מקופלים שגוי.</p>
 <p><strong>מדדי Healthspan קליניים:</strong> VO₂max, כוח אחיזה, מהירות הליכה, MoCA, גלוקוז בצום, HbA1c, hsCRP, DEXA, ביצועים קוגניטיביים ממוחשבים.</p>
 <p><strong>נקודת המינוף:</strong> ניתן להרחיב Healthspan משמעותית ללא הארכת Lifespan בהכרח. המטרה — לדחות את ה-curve, לא בהכרח להאריכה.</p>`,
@@ -3927,6 +4094,10 @@ function showScreen(id) {
   window.scrollTo(0,0);
 }
 
+function showLayer3Roles() {
+  showScreen('screen-layer3-roles');
+}
+
 function startCourse() { goToDay(1); }
 
 function goToDay(d) {
@@ -4655,26 +4826,9 @@ function doLogout() {
 
 // Enter key support
 document.addEventListener('DOMContentLoaded', () => {
-  ['login-email', 'login-password'].forEach(id => {
-    document.getElementById(id).addEventListener('keydown', e => {
-      if (e.key === 'Enter') doLogin();
-    });
-  });
-
-  // Version check — forces re-login after major updates
-  const SESSION_VERSION = '2';
-  const storedVersion = localStorage.getItem('tmr_session_version');
-  if (storedVersion !== SESSION_VERSION) {
-    sessionStorage.removeItem('tmr_session');
-    localStorage.setItem('tmr_session_version', SESSION_VERSION);
-  }
-
-  // Check existing session
-  const user = getCurrentUser();
-  if (user) {
-    document.getElementById('login-screen').classList.add('hidden');
-    onLoginSuccess(user);
-  }
+  // כניסה חופשית — מסך כניסה מושבת
+  document.getElementById('login-screen').classList.add('hidden');
+  onLoginSuccess({ email: 'guest', role: 'user' });
 });
 
 // ── ADMIN PIN ─────────────────────────────────────────────────
