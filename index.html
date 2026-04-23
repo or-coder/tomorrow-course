@@ -4159,5 +4159,25 @@ init();
   });
 })();
 </script>
+<script>
+  window.TOMConfig = {
+    endpoint: 'https://tomorrow-course.or-21f.workers.dev',
+    courseContext: (function() {
+      if (typeof MODULES === 'undefined') return '';
+      function strip(h) { return h ? h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim() : ''; }
+      return Object.keys(MODULES).sort((a,b)=>+a-+b).map(d => {
+        const m = MODULES[d];
+        return [
+          'יום ' + d + ': ' + m.title,
+          m.objectives?.length ? 'מטרות: ' + m.objectives.join(' | ') : '',
+          m.content ? 'תוכן: ' + strip(m.content) : '',
+          m.takeaways?.length ? 'נקודות: ' + m.takeaways.join(' | ') : '',
+          m.redFlags?.length ? 'דגלים: ' + m.redFlags.join(' | ') : '',
+        ].filter(Boolean).join('\n');
+      }).join('\n\n');
+    })()
+  };
+</script>
+<script src="/tomorrow-course/tom-widget.js"></script>
 </body>
 </html>
